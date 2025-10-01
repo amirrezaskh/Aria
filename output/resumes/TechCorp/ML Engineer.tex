@@ -1,0 +1,177 @@
+
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\input{glyphtounicode}
+
+\usepackage{lmodern}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    #1 \vspace{0pt}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-3pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{0pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-3pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{0pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\include{custom-commands}
+
+%----------HEADING----------%
+\begin{center}
+    \textbf{\Huge \scshape Amirreza Sokhankhosh} \\ \vspace{1pt}
+    \faPhone \small 431-293-6515 \quad
+    \href{mailto:amirreza.skhn@gmail.com}{\faEnvelope \ \underline{amirreza.skhn@gmail.com}} \quad
+    \href{https://www.linkedin.com/in/amirrezakh/}{\faLinkedin \ \underline{LinkedIn}} \quad
+    \href{https://github.com/amirrezaskh}{\faGithub \ \underline{GitHub}} \quad
+    \href{https://amirrezaskh.com}{\faBriefcase \ \underline{Portfolio}}
+\end{center}
+
+%----------Highlight of Qualifications----------%
+\section{Highlight of Qualifications}
+\resumeItemListStart
+
+\resumeItemListEnd
+%-----------EXPERIENCE-----------%
+\section{Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+    {University of Manitoba}{Sep 2023 – Jul 2025}
+    {Graduate Research Assistant}{Winnipeg, Manitoba, Canada}
+    \resumeItemListStart
+        \resumeItem{Designed and developed \textbf{novel distributed AI architectures} for scalable machine learning applications, including PoCL and SSFL, optimizing resource efficiency by \textbf{reducing communication overhead by 85.2\%} and increasing fault tolerance by \textbf{62.7\%}.}
+        \resumeItem{Implemented and optimized machine learning models using \textbf{TensorFlow} and \textbf{PyTorch}, ensuring high-quality performance in \textbf{production environments}.}
+        \resumeItem{Conducted extensive data preprocessing and feature engineering to prepare large-scale text datasets for analysis, ensuring \textbf{model reliability} and effective evaluation processes.}
+        \resumeItem{Explored and experimented with generative AI techniques in research-focused projects, contributing to the understanding of \textbf{blockchain-driven personalization} in federated learning.}
+        \resumeItem{Authored and published research in top-tier IEEE venues, showcasing \textbf{technical communication} skills and deep insights into advanced machine learning methodologies.}
+    \resumeItemListEnd
+
+\resumeSubheading
+    {Bobo}{May 2024 – Aug 2024}
+    {Full-stack Developer Intern}{Winnipeg, Manitoba, Canada}
+    \resumeItemListStart
+        \resumeItem{Developed and deployed \textbf{RESTful APIs} to enhance data management, aligning backend functionalities with project goals on an agile development team.}
+        \resumeItem{Automated data integration processes using Python, streamlining database population from CSV to SQL, contributing to significant efficiencies in data handling.}
+        \resumeItem{Collaborated with cross-functional teams to ensure the APIs met user interface requirements, enhancing \textbf{system scalability} and performance.}
+        \resumeItem{Contributed to maintaining technical documentation and coordinated project tasks using the \textbf{Atlassian suite}, promoting effective collaboration in an agile environment.}
+    \resumeItemListEnd
+
+\resumeSubheading
+    {K. N. Toosi University of Technology}{Jan 2021 – Jan 2023}
+    {Lead Teaching Assistant}{N/A}
+    \resumeItemListStart
+        \resumeItem{Designed and delivered lectures on complex technical subjects, including \textbf{Algorithm Design} and \textbf{System Design}, effectively enhancing student comprehension and engagement.}
+        \resumeItem{Provided tailored academic support to over 300 undergraduate students, demonstrating strong \textbf{communication skills} in conveying complex concepts to diverse learners.}
+        \resumeItem{Developed practical coding projects that incorporated advanced data structures, fostering problem-solving skills in students and preparing them for real-world challenges.}
+        \resumeItem{Facilitated collaborative learning by leading study sessions focused on \textbf{Distributed Systems} principles, improving student performance and understanding of critical topics.}
+    \resumeItemListEnd
+
+\resumeSubheading
+    {Sadr Group Company}{Jul 2020 – Dec 2020}
+    {Full-stack Developer Intern}{N/A}
+    \resumeItemListStart
+        \resumeItem{Implemented secure \textbf{RESTful APIs} with \textbf{Adonis.js} and \textbf{Express.js}, enhancing application security through JWT authentication, crucial for production deployment.}
+        \resumeItem{Conducted thorough testing and documentation using \textbf{Swagger}, facilitating seamless integration and knowledge transfer within the team.}
+        \resumeItem{Coordinated with the Agile Scrum team to optimize CI/CD workflows, actively participating in sprint planning and task management with \textbf{ClickUp}.}
+        \resumeItem{Designed and managed database schemas using MySQL for effective data handling, showcasing strong backend development skills aligned with production operations.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------Projects-----------%
+\section{Projects}
+\resumeSubHeadingListStart
+
+
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+    \resumeSubHeadingListStart
+
+    \resumeSubheading
+    {University of Manitoba}{Sep 2023 – Aug 2025}
+    {Master of Science in Computer Science (GPA: 4.4 / 4.5)}{Winnipeg, Canada}
+    \resumeItemListStart
+        \resumeItem{\textbf{Relevant Coursework:}  Security \& Privacy, Deep Generative Modeling, Blockchain \& Distributed Systems: A+}
+    \resumeItemListEnd
+
+    \resumeSubheading
+    {K.N. Toosi University of Technology}{Sep 2018 – Feb 2023}
+    {Bachelor of Science in Computer Engineering}{}
+
+    \resumeSubHeadingListEnd
+
+%-----------Technical Skills-----------
+\section{Technical Skills}
+
+
+
+%-------------------------------------------
+\end{document}

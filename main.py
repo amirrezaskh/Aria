@@ -28,6 +28,10 @@ class State(TypedDict):
     projects: str
     highlights: str
     cover_letter: str
+    company: str
+    position: str
+    tex_file: str
+    pdf_file: str
 
 
 class Aria:
@@ -323,13 +327,14 @@ class Aria:
         FORMATTING GUIDELINES:
         - Use \\textbf{{}} to bold technical skills, technologies, methodologies, and key achievements mentioned in the job posting
         - Start each \\resumeItem with strong action verbs (Developed, Implemented, Designed, Led, Accelerated, etc.)
-        - Quantify achievements with numbers/percentages when available
+        - Quantify achievements with numbers/percentages when available (use \\% for percentages in LaTeX)
         - Tailor the language to match the job posting's terminology
         - Highlight transferable skills even if from different domains
         - Focus on impact and results, not just responsibilities
         - Ensure each experience shows progression and growth
         - Maximum 5 resume items per experience
         - Order experiences by relevance to the job posting
+        - If location is not provided, leave it empty
 
         PRIORITIZATION CRITERIA:
         1. Direct skill/technology matches with job requirements
@@ -584,7 +589,7 @@ class Aria:
             - Include complementary technologies that demonstrate full-stack or specialized capabilities relevant to the role
             - Bold technical terms, frameworks, and methodologies mentioned in the job posting using \\textbf{{}}
             - Focus on achievements and impact, not just features
-            - Include quantified results when available (percentages, time savings, performance improvements)
+            - Include quantified results when available (percentages, time savings, performance improvements - use \\% for percentages in LaTeX)
             - Use strong action verbs (Built, Developed, Implemented, Integrated, Designed, etc.)
             - Tailor language to match job posting terminology
             - Keep each \\resumeItem concise but impactful (1-2 lines max)
@@ -665,7 +670,7 @@ class Aria:
         - Each highlight should start with a \\textbf{{domain area}} that matches job requirements
         - Bold all technical skills, technologies, frameworks, and methodologies using \\textbf{{}}
         - Include specific technologies and techniques mentioned in experiences and projects
-        - Quantify achievements where possible (percentages, scale, impact)
+        - Quantify achievements where possible (percentages, scale, impact - use \\% for percentages in LaTeX)
         - Use strong, confident language that demonstrates expertise
         - Each highlight should be 1-2 lines maximum for readability
         - Order highlights by importance to the job posting
@@ -719,7 +724,70 @@ class Aria:
         return {"highlights": latex_content}
 
     def generate_resume(self, state: State):
-        pass
+        """Generate complete resume by combining all sections and compiling to PDF"""
+        import subprocess
+        import os
+        
+        # Extract content from state
+        highlights = state.get("highlights", "")
+        experiences = state.get("experiences", "")
+        skills = state.get("skills", "")
+        projects = state.get("project_summaries", "")
+        
+        # Generate the complete LaTeX resume using the formatting function
+        resume_latex = format_resume(highlights, experiences, skills, projects)
+        
+        # Create output directory structure
+        company = state.get("company", "Default")
+        position = state.get("position", "Position")
+        
+        output_dir = f"./output/resumes/{company}"
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Write LaTeX file
+        tex_filename = f"{position}.tex"
+        tex_filepath = os.path.join(output_dir, tex_filename)
+        
+        with open(tex_filepath, "w", encoding="utf-8") as f:
+            f.write(resume_latex)
+        
+        # Compile LaTeX to PDF
+        pdf_filepath = None
+        try:
+            # Change to output directory for compilation
+            original_cwd = os.getcwd()
+            os.chdir(output_dir)
+            
+            # Run pdflatex twice for proper references
+            subprocess.run(["pdflatex", "-interaction=nonstopmode", tex_filename], 
+                         check=True, capture_output=True, text=True)
+            subprocess.run(["pdflatex", "-interaction=nonstopmode", tex_filename], 
+                         check=True, capture_output=True, text=True)
+            
+            # Clean up auxiliary files
+            base_name = os.path.splitext(tex_filename)[0]
+            aux_extensions = ['.aux', '.log', '.out', '.fdb_latexmk', '.fls']
+            for ext in aux_extensions:
+                aux_file = base_name + ext
+                if os.path.exists(aux_file):
+                    os.remove(aux_file)
+            
+            pdf_filepath = os.path.join(output_dir, f"{base_name}.pdf")
+            
+        except subprocess.CalledProcessError as e:
+            print(f"LaTeX compilation failed: {e}")
+            print(f"Error output: {e.stderr}")
+        except FileNotFoundError:
+            print("pdflatex not found. Please install LaTeX (e.g., MacTeX on macOS)")
+        finally:
+            # Return to original directory
+            os.chdir(original_cwd)
+        
+        return {
+            "resume": resume_latex,
+            "tex_file": tex_filepath,
+            "pdf_file": pdf_filepath if pdf_filepath and os.path.exists(pdf_filepath) else None
+        }
 
     def generate_cover_letter(self, state: State):
         pass
@@ -732,34 +800,49 @@ aria = Aria()
 
 # Example usage
 sample_job_posting = """
-Responsibilities
+Skills and Responsibilities:
 
-Develop, train, and deploy machine learning models on Google Cloud Platform (GCP), leveraging tools such as VertexAI, GenApp Builder, PalmApi and BigQueryML.
-Collaborate with cross-functional teams to gather requirements, define project goals, and design scalable machine learning architectures.
-Conduct data preprocessing, feature engineering, and model evaluation to ensure high-quality and reliable models.
-Implement and optimize machine learning algorithms and pipelines to handle large-scale text-based datasets.
-Explore and experiment with generative AI techniques, including large language models, to solve complex text-related problems.
-Monitor and maintain deployed models, ensuring performance, scalability, and reliability in production environments.
-Stay up-to-date with the latest advancements in machine learning, generative AI, and text-based models, and proactively propose innovative solutions to enhance existing systems.
+ 
+ •Seeking for a motivated Gen AI Engineer to work with our Global Advanced Customer Analytics team and develop & support solutions primarily focused on customer insight knowledge bot. 
 
-Requirements
+ 
+Responsibilities: 
 
-Bachelor's or advanced degree in Computer Science, Engineering, or a related field.
-Strong experience in machine learning engineering, with a focus on developing and deploying models in production environments.
-Proficiency in using Google Cloud Platform (GCP) tools and services for machine learning, such as Vertex AI, BigQuery, and TensorFlow.
-Solid understanding of deep learning architectures, natural language processing (NLP), and generative AI models, particularly in the text domain.
-Proficiency in Python and experience with relevant libraries and frameworks, such as TensorFlow, PyTorch, or Keras.
-Experience with data preprocessing, feature engineering, and model evaluation techniques for text-based datasets.
-Familiarity with MLOps practices, version control, and CI/CD pipelines for machine learning.
-Strong problem-solving skills and the ability to work on complex projects independently or collaboratively.
-Excellent communication skills, with the ability to convey complex technical concepts to both technical and non-technical stakeholders.
 
-Preferred Qualifications
 
-Experience with large language models, such as GPT-3, BERT, or Transformer-based models.
-Familiarity with cloud-based machine learning services and technologies, beyond Google Cloud Platform.
-Knowledge of scalable distributed computing frameworks, such as Apache Spark or Hadoop.
-Contributions to open-source machine learning projects or research publications in the field.
+ •Gen AI use cases requirements understanding working with product owners, business and design LLM solutions aligned with Manulife approved RAG patterns· 
+
+ •Drive data requirements conversations and work with data office to get required data for the use case· Design efficient chunking & indexing strategies to support answer generation as per expectations· Develop and deploy inference APIs using frameworks like Lang chain and deploy to AKS or function apps· 
+
+ •Capable to pick up UI work as needed to support front end integration collaborating with UI team· 
+
+ •Support Gen AI knowledge BOTs in production by monitoring user feedback and improve BOT response quality through enhancements as per feedback· 
+
+ •Embrace best practices, processes related to ML Ops, Coding best practices· 
+
+ •Experience in optimizing model accuracy by efficient prompt refinements· 
+
+ •Collaborate with existing members in the team, contribute to reusable Gen AI code base What we are looking for: · 
+
+ •Good years of experience solving high-impact business problems using Machine learning & latest advancements in LLMs· 
+
+ •Proven experience as a ML Engineer, with a strong focus on generative AI, prompt engineering, and RAG applications. · 
+
+ •Hands-on experience using Azure AI search, Lang chain, other Vector stores. 
+
+ •Experience in Azure Open AI. Open-source LLMs is a plus. · 
+
+ •Strong software development skills with proficiency in Python, Pyspark, preferably using Databricks Azure ML. 
+
+ •Basic knowledge of React or equivalent UI frameworks is a plus. · 
+
+ •Strong experience in supporting production applications post development and continuously improve response quality to increase benefits· 
+
+ •Strong collaboration skills, ability to translate sophisticated requirements into technical backlog, presentation skills, and an ability to balance a sense.
+ 
+Tata Consultancy Services Canada Inc. is committed to meeting the accessibility needs of all individuals in accordance with the Accessibility for Ontarians with Disabilities Act (AODA) and the Ontario Human Rights Code (OHRC). Should you require accommodations during the recruitment and selection process, please inform Human Resources.
+ 
+Thank you for your interest in TCS. Candidates that meet the qualifications for this position will be contacted within a 2-week period. We invite you to continue to apply for other opportunities that match your profile.
 """
 
 # Test the complete pipeline
@@ -803,5 +886,22 @@ highlights_result = aria.generate_highlights({
 print("HIGHLIGHT OF QUALIFICATIONS:")
 print(highlights_result["highlights"])
 
-save_resume("Bitstrapped", "Machine Learning Engineer ", highlights_result["highlights"], experiences_result["experiences"],
-            skills_result["skills"], project_summaries_result["project_summaries"])
+# Generate complete resume with PDF compilation
+complete_state = {
+    "job": sample_job_posting,
+    "highlights": highlights_result["highlights"],
+    "experiences": experiences_result["experiences"],
+    "skills": skills_result["skills"],
+    "project_summaries": project_summaries_result["project_summaries"],
+    "company": "TCS",
+    "position": "Gen AI Developer"
+}
+
+resume_result = aria.generate_resume(complete_state)
+print("\n" + "="*80 + "\n")
+print("RESUME GENERATION COMPLETE:")
+print(f"LaTeX file: {resume_result['tex_file']}")
+if resume_result['pdf_file']:
+    print(f"PDF file: {resume_result['pdf_file']}")
+else:
+    print("PDF compilation failed or pdflatex not available")

@@ -1,9 +1,9 @@
-PWD /Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/Bitstrapped
+PWD /Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/TCS
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/Bitstrapped/Machine Learning Engineer.tex
-OUTPUT Machine Learning Engineer.log
+INPUT /Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/TCS/Gen AI Developer.tex
+OUTPUT Gen AI Developer.log
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/size11.clo
@@ -137,24 +137,24 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmr10.tfm
-INPUT ./Machine Learning Engineer.aux
-INPUT ./Machine Learning Engineer.aux
-INPUT Machine Learning Engineer.aux
+INPUT ./Gen AI Developer.aux
+INPUT ./Gen AI Developer.aux
+INPUT Gen AI Developer.aux
 INPUT ./custom-commands.aux
 INPUT ./custom-commands.aux
 INPUT custom-commands.aux
-OUTPUT Machine Learning Engineer.aux
+OUTPUT Gen AI Developer.aux
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-INPUT ./Machine Learning Engineer.out
-INPUT ./Machine Learning Engineer.out
-INPUT Machine Learning Engineer.out
-INPUT Machine Learning Engineer.out
-OUTPUT Machine Learning Engineer.pdf
-INPUT ./Machine Learning Engineer.out
-INPUT ./Machine Learning Engineer.out
-OUTPUT Machine Learning Engineer.out
+INPUT ./Gen AI Developer.out
+INPUT ./Gen AI Developer.out
+INPUT Gen AI Developer.out
+INPUT Gen AI Developer.out
+OUTPUT Gen AI Developer.pdf
+INPUT ./Gen AI Developer.out
+INPUT ./Gen AI Developer.out
+OUTPUT Gen AI Developer.out
 OUTPUT custom-commands.aux
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmbx10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmbx12.tfm
@@ -229,12 +229,13 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.e
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rmsc.enc
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
-INPUT Machine Learning Engineer.aux
+INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmr12.tfm
+INPUT Gen AI Developer.aux
 INPUT ./custom-commands.aux
 INPUT ./custom-commands.aux
 INPUT custom-commands.aux
-INPUT ./Machine Learning Engineer.out
-INPUT ./Machine Learning Engineer.out
+INPUT ./Gen AI Developer.out
+INPUT ./Gen AI Developer.out
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx10.pfb

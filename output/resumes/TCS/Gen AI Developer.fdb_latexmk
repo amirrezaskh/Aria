@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1759279389.79003 "/Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/Bitstrapped/Machine Learning Engineer.tex" "Machine Learning Engineer.pdf" "Machine Learning Engineer" 1759279390.41566 0
-  "/Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/Bitstrapped/Machine Learning Engineer.tex" 1759279388.88458 13365 fc7b40dd5c7c982e6190ce7fd4adf1dd ""
+["pdflatex"] 1759297508.90468 "/Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/TCS/Gen AI Developer.tex" "Gen AI Developer.pdf" "Gen AI Developer" 1759297509.54948 0
+  "/Users/amirrezasokhankhosh/Documents/Workstation/Aria/output/resumes/TCS/Gen AI Developer.tex" 1759297506.75242 12789 2d1ee59a068458f984ceb89fea0aed65 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands0.enc" 1622837620 2920 d63721872b8c77041b88e51b8f7c291d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.enc" 1622837620 3083 a707712f77b073b3833e4b1334a30e99 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc" 1622837620 3042 0e2b14b9be7d01075a4c4591d5d1781b ""
@@ -35,6 +35,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmbx12.tfm" 1254269338 11880 ea60d06924270684e6f852f3141c992b ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmcsc10.tfm" 1254269338 11088 74137ed57ef5d28227a6f78692896bed ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmr10.tfm" 1254269338 11868 4f81e9b6033c032bdaf9884f4d7ef412 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmr12.tfm" 1254269338 11888 6841b91e46b65cf41a49b160e6e74130 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmr5.tfm" 1254269338 11804 aefb10c002e6492c25236524a447f969 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmr6.tfm" 1254269338 11836 e3b6ce3e601aec94f64a536e7f4224d5 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/lm/rm-lmr7.tfm" 1254269338 11852 5a9022f105fd1ee2797df861e79ae9a0 ""
@@ -124,15 +125,15 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1712163712.08447 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1712163673 8221443 7e1111debefa2c568d97994c8982b745 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "Machine Learning Engineer.aux" 1759279390.33682 826 55cd0ee3fab45de2f68daf5ac17785d8 "pdflatex"
-  "Machine Learning Engineer.out" 1759279390.33802 574 77ba646a8543937a9a03110e66a4f04e "pdflatex"
-  "Machine Learning Engineer.tex" 1759279388.88458 13365 fc7b40dd5c7c982e6190ce7fd4adf1dd ""
-  "custom-commands.aux" 1759279390.16146 583 cf396e57031e5cbc302da50552829b29 "pdflatex"
+  "Gen AI Developer.aux" 1759297509.46937 826 1fdc5450640dd28e89f459a7a79eac1a "pdflatex"
+  "Gen AI Developer.out" 1759297509.47058 574 77ba646a8543937a9a03110e66a4f04e "pdflatex"
+  "Gen AI Developer.tex" 1759297506.75242 12789 2d1ee59a068458f984ceb89fea0aed65 ""
+  "custom-commands.aux" 1759297509.28609 583 cf396e57031e5cbc302da50552829b29 "pdflatex"
   "custom-commands.tex" 0 -1 0 ""
   (generated)
-  "Machine Learning Engineer.aux"
-  "Machine Learning Engineer.log"
-  "Machine Learning Engineer.out"
-  "Machine Learning Engineer.pdf"
+  "Gen AI Developer.aux"
+  "Gen AI Developer.log"
+  "Gen AI Developer.out"
+  "Gen AI Developer.pdf"
   "custom-commands.aux"
   (rewritten before read)
