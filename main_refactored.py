@@ -6,113 +6,97 @@ more maintainable code.
 """
 
 from dotenv import load_dotenv
-
-# Import the new modular components
-from src.chains.experience_chain import ExperienceChain
-from src.chains.skills_chain import SkillsChain
-from src.chains.project_selection_chain import ProjectSelectionChain
-from src.chains.project_summaries_chain import ProjectSummariesChain
-from src.chains.highlight_chain import HighlightChain
+from src.workflows.workflows import Worlflows
 from src.workflows.states import ResumeState
 
-# Import existing components (to be refactored)
-from src.format import LatexFormatter
-from src.format import LatexCompiler
 
 
-class AriaResumeGenerator:
-    """Main resume generation orchestrator using modular architecture"""
+# class AriaResumeGenerator:
+#     """Main resume generation orchestrator using modular architecture"""
     
-    def __init__(self):
-        """Initialize with modular components"""
-        self.experience_chain = ExperienceChain()
-        self.skills_chain = SkillsChain()
-        self.project_selecion_chain = ProjectSelectionChain()
-        self.project_summaries_chain = ProjectSummariesChain()
-        self.highlight_chain = HighlightChain()
+#     def generate_resume(self, job_posting: str, company: str, position: str) -> ResumeState:
+#         """Generate a complete resume using the modular workflow"""
+        
+#         print(f"🚀 Generating resume for {position} at {company}")
+        
+#         # Initialize state
+#         state = ResumeState(
+#             job_posting=job_posting,
+#             company=company,
+#             position=position,
+#             experiences="",
+#             skills="", 
+#             project_names=[],
+#             project_summaries="",
+#             highlights="",
+#             resume_latex="",
+#             tex_file=None,
+#             pdf_file=None,
+#             context=[],
+#             generation_metadata={}
+#         )
+
+#         state["company"] = company
+#         state["position"] = position
+#         state["job_posting"] = job_posting
+        
+#         # Step 1: Generate experiences
+#         print("📝 Generating experiences...")
+#         experience_result = self.experience_chain.invoke({
+#             "job_posting": job_posting
+#         })
+#         state["experiences"] = experience_result["experiences"]
+        
+#         # Step 2: Generate skills
+#         print("📝 Generating skills...")
+#         skills_result = self.skills_chain.invoke({
+#             "job_posting": job_posting
+#         })
+#         state["skills"] = skills_result["skills"]
+
+#         # Step 3: Select Projects
+#         print("📝 Selecting projects...")
+#         project_selection_results = self.project_selecion_chain.invoke({
+#             "job_posting": job_posting
+#         })
+#         state["project_names"] = project_selection_results["project_names"]
+
+#         # Step 4: Summarize Projects
+#         print("📝 Summarizing projects...")
+#         project_summaries_results = self.project_summaries_chain.invoke({
+#             "job_posting": job_posting,
+#             "project_names": state["project_names"]
+#         })
+#         state["project_summaries"] = project_summaries_results["project_summaries"]
+
+#         print("📝 Generating highlights...")
+#         highlights_results = self.highlight_chain.invoke({
+#             "job_posting": job_posting,
+#             "experiences": state["experiences"],
+#             "skills": state["skills"],
+#             "project_summaries": state["project_summaries"]   
+#         })
+#         state["highlights"] = highlights_results["highlights"]
+        
+#         print("✅ Resume generation complete!")
+#         return state
     
-    def generate_resume(self, job_posting: str, company: str, position: str) -> ResumeState:
-        """Generate a complete resume using the modular workflow"""
-        
-        print(f"🚀 Generating resume for {position} at {company}")
-        
-        # Initialize state
-        state = ResumeState(
-            job_posting=job_posting,
-            company=company,
-            position=position,
-            experiences="",
-            skills="", 
-            project_names=[],
-            project_summaries="",
-            highlights="",
-            resume_latex="",
-            tex_file=None,
-            pdf_file=None,
-            context=[],
-            generation_metadata={}
-        )
-
-        state["company"] = company
-        state["position"] = position
-        
-        # Step 1: Generate experiences
-        print("📝 Generating experiences...")
-        experience_result = self.experience_chain.invoke({
-            "job_posting": job_posting
-        })
-        state["experiences"] = experience_result["experiences"]
-        
-        # Step 2: Generate skills
-        print("📝 Generating skills...")
-        skills_result = self.skills_chain.invoke({
-            "job_posting": job_posting
-        })
-        state["skills"] = skills_result["skills"]
-
-        # Step 3: Select Projects
-        print("📝 Selecting projects...")
-        project_selection_results = self.project_selecion_chain.invoke({
-            "job_posting": job_posting
-        })
-        state["project_names"] = project_selection_results["project_names"]
-
-        # Step 4: Summarize Projects
-        print("📝 Summarizing projects...")
-        project_summaries_results = self.project_summaries_chain.invoke({
-            "job_posting": job_posting,
-            "project_names": state["project_names"]
-        })
-        state["project_summaries"] = project_summaries_results["project_summaries"]
-
-        print("📝 Generating highlights...")
-        highlights_results = self.highlight_chain.invoke({
-            "job_posting": job_posting,
-            "experiences": state["experiences"],
-            "skills": state["skills"],
-            "project_summaries": state["project_summaries"]   
-        })
-        state["highlights"] = highlights_results["highlights"]
-        
-        print("✅ Resume generation complete!")
-        return state
-    
-    def save_resume(self, result_state: ResumeState):
-        # latex_code = LatexFormatter.format_resume(
-        #     highlights=result_state["highlights"],
-        #     experiences=result_state["experiences"],
-        #     skills=result_state["skills"],
-        #     projects=result_state["project_summaries"]
-        # )
-        latex_code = LatexFormatter.format_resume(
-            highlights=result_state["highlights"],
-            experiences=result_state["experiences"],
-            skills=result_state["skills"],
-            projects=result_state["project_summaries"]
-        )
-        output_dir = f"./output/resumes/{result_state['company']}"
-        latex_filename = f"{result_state['position']}.tex"
-        return LatexCompiler.compile_latex(latex_code, output_dir, latex_filename)
+#     def save_resume(self, result_state: ResumeState):
+#         # latex_code = LatexFormatter.format_resume(
+#         #     highlights=result_state["highlights"],
+#         #     experiences=result_state["experiences"],
+#         #     skills=result_state["skills"],
+#         #     projects=result_state["project_summaries"]
+#         # )
+#         latex_code = LatexFormatter.format_resume(
+#             highlights=result_state["highlights"],
+#             experiences=result_state["experiences"],
+#             skills=result_state["skills"],
+#             projects=result_state["project_summaries"]
+#         )
+#         output_dir = f"./output/resumes/{result_state['company']}"
+#         latex_filename = f"{result_state['position']}.tex"
+#         return LatexCompiler.compile_latex(latex_code, output_dir, latex_filename)
 
 
 def main():
@@ -120,7 +104,7 @@ def main():
     load_dotenv()
     
     # Sample job posting
-    sample_job_posting = """
+    job_posting = """
     Responsibilities
 
     Develop, train, and deploy machine learning models on Google Cloud Platform (GCP), leveraging tools such as VertexAI, GenApp Builder, PalmApi and BigQueryML.
@@ -150,16 +134,31 @@ def main():
     Knowledge of scalable distributed computing frameworks, such as Apache Spark or Hadoop.
     Contributions to open-source machine learning projects or research publications in the field.
     """
+
+    company = "TechCorp"
+    position = "ML Engineer"
+
+    state = ResumeState(
+            job_posting=job_posting,
+            company=company,
+            position=position,
+            experiences="",
+            skills="", 
+            project_names=[],
+            project_summaries="",
+            highlights="",
+            resume_latex="",
+            tex_file=None,
+            pdf_file=None,
+            context=[],
+            generation_metadata={}
+        )
+    resume_workflow = Worlflows.create_resume_workflow()
+
+    print(f"🚀 Generating resume for {position} at {company}")
+    result = resume_workflow.invoke(state)
     
-    # Create generator and run
-    generator = AriaResumeGenerator()
-    result_state = generator.generate_resume(
-        job_posting=sample_job_posting,
-        company="TechCorp",
-        position="ML Engineer"
-    )
-    paths = generator.save_resume(result_state=result_state)
-    print(paths)
+    print(result["pdf_file"])
 
 
 if __name__ == "__main__":

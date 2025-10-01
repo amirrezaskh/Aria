@@ -1,4 +1,5 @@
 import json
+from ..workflows.states import ResumeState
 from typing import Dict, Any
 from .base import BaseChain
 from ..config.settings import settings
@@ -17,10 +18,10 @@ class SkillsChain(BaseChain):
         with open(settings.skills_path, "r") as f:
             return json.load(f)
         
-    def invoke(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+    def invoke(self, state: ResumeState) -> Dict[str, Any]:
         skills_data = self.load_skills_data()
         promptInputs = {
-            "job": inputs["job_posting"],
+            "job": state["job_posting"],
             "skills": json.dumps(skills_data, indent=2)
         }
 

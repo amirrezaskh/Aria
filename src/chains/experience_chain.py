@@ -1,6 +1,7 @@
 """Experience generation chain"""
 
 import json
+from ..workflows.states import ResumeState
 from typing import Dict, Any
 from langchain.prompts import PromptTemplate
 
@@ -26,14 +27,14 @@ class ExperienceChain(BaseChain):
         with open(settings.experiences_path, "r") as f:
             return json.load(f)
     
-    def invoke(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+    def invoke(self, state: ResumeState) -> Dict[str, Any]:
         """Generate experiences based on job posting"""
         # Load experiences data
         experiences_data = self.load_experiences_data()
         
         # Prepare inputs for the prompt
         prompt_inputs = {
-            "job": inputs["job_posting"],
+            "job": state["job_posting"],
             "experiences": json.dumps(experiences_data["experiences"], indent=2)
         }
         
@@ -45,6 +46,6 @@ class ExperienceChain(BaseChain):
             "raw_response": result["raw_response"],
             "metadata": {
                 "total_experiences_available": len(experiences_data["experiences"]),
-                "job_posting_length": len(inputs["job_posting"])
+                "job_posting_length": len(state["job_posting"])
             }
         }

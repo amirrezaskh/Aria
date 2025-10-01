@@ -1,4 +1,5 @@
 import json
+from ..workflows.states import ResumeState
 from langchain.prompts import PromptTemplate
 from typing import Dict, Any, List
 from .base import BaseChain
@@ -45,15 +46,15 @@ class ProjectSummariesChain(BaseChain):
             "github": project_info["github"]
         }
 
-    def invoke(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+    def invoke(self, state: ResumeState) -> Dict[str, Any]:
         project_data = self.load_projects_data()
-        project_names = inputs["project_names"]
+        project_names = state["project_names"]
         project_summaries = []
         for project_name in project_names:
             project_context = self.load_project_context(project_name, project_data["projects"])
 
             promptInputs = {
-                "job": inputs["job_posting"],
+                "job": state["job_posting"],
                 "project_title": project_context["title"],
                 "project_description": project_context["description"],
                 "project_stack": ", ".join(project_context["stack"]),

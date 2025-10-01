@@ -1,4 +1,5 @@
 from typing import Dict, Any
+from ..workflows.states import ResumeState
 from ..config.prompts import PromptTemplates
 from langchain.prompts import PromptTemplate
 from ..extractors.latex_extractor import LaTeXExtractor
@@ -12,12 +13,12 @@ class HighlightChain(BaseChain):
     def process_response(self, response: str) -> str:
         return LaTeXExtractor.extract_highlights(response)
 
-    def invoke(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+    def invoke(self, state: ResumeState) -> Dict[str, Any]:
         promptInputs = {
-            "job": inputs["job_posting"],
-            "experiences": inputs["experiences"],
-            "skills": inputs["skills"],
-            "projects": inputs["project_summaries"]
+            "job": state["job_posting"],
+            "experiences": state["experiences"],
+            "skills": state["skills"],
+            "projects": state["project_summaries"]
         }
 
         result = super().invoke(promptInputs)

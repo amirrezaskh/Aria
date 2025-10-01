@@ -187,7 +187,8 @@ class PromptTemplates:
     - Include complementary technologies that demonstrate full-stack or specialized capabilities relevant to the role
     - Bold technical terms, frameworks, and methodologies mentioned in the job posting using \\textbf{{}}
     - Focus on achievements and impact, not just features
-    - Include quantified results when available (percentages, time savings, performance improvements - use \\% for percentages in LaTeX)
+    - Include quantified results when available (percentages, time savings, performance improvements)
+    - IMPORTANT: Use proper LaTeX escaping - write \\% instead of percentage in text
     - Use strong action verbs (Built, Developed, Implemented, Integrated, Designed, etc.)
     - Tailor language to match job posting terminology
     - Keep each \\resumeItem concise but impactful (1-2 lines max)

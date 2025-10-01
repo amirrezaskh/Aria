@@ -1,4 +1,5 @@
 import json
+from ..workflows.states import ResumeState
 from langchain.prompts import PromptTemplate
 from typing import Dict, Any
 from .base import BaseChain
@@ -18,11 +19,11 @@ class ProjectSelectionChain(BaseChain):
         with open(settings.projects_path, "r") as f:
             return json.load(f)
 
-    def invoke(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+    def invoke(self, state: ResumeState) -> Dict[str, Any]:
         projects_data = self.load_projects_data()
 
         promptInputs = {
-            "job": inputs["job_posting"],
+            "job": state["job_posting"],
             "projects": json.dumps(projects_data["projects"], indent=2)
         }
 

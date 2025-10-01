@@ -22,7 +22,7 @@ class ResumeState(TypedDict):
     
     # Final outputs
     resume_latex: str
-    tex_file: Optional[str]
+    latex_file: Optional[str]
     pdf_file: Optional[str]
     
     # RAG context (for cover letters)
