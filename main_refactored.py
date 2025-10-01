@@ -9,6 +9,10 @@ from dotenv import load_dotenv
 
 # Import the new modular components
 from src.chains.experience_chain import ExperienceChain
+from src.chains.skills_chain import SkillsChain
+from src.chains.project_selection_chain import ProjectSelectionChain
+from src.chains.project_summaries_chain import ProjectSummariesChain
+from src.chains.highlight_chain import HighlightChain
 from src.workflows.states import ResumeState
 
 # Import existing components (to be refactored)
@@ -22,10 +26,10 @@ class AriaResumeGenerator:
     def __init__(self):
         """Initialize with modular components"""
         self.experience_chain = ExperienceChain()
-        # TODO: Initialize other chains
-        # self.skills_chain = SkillsChain()
-        # self.project_chain = ProjectChain()
-        # self.highlights_chain = HighlightsChain()
+        self.skills_chain = SkillsChain()
+        self.project_selecion_chain = ProjectSelectionChain()
+        self.project_summaries_chain = ProjectSummariesChain()
+        self.highlight_chain = HighlightChain()
     
     def generate_resume(self, job_posting: str, company: str, position: str) -> ResumeState:
         """Generate a complete resume using the modular workflow"""
@@ -48,6 +52,9 @@ class AriaResumeGenerator:
             context=[],
             generation_metadata={}
         )
+
+        state["company"] = company
+        state["position"] = position
         
         # Step 1: Generate experiences
         print("📝 Generating experiences...")
@@ -55,14 +62,37 @@ class AriaResumeGenerator:
             "job_posting": job_posting
         })
         state["experiences"] = experience_result["experiences"]
-        state["company"] = company
-        state["position"] = position
         
-        # TODO: Add other steps
         # Step 2: Generate skills
-        # Step 3: Select and summarize projects  
-        # Step 4: Generate highlights
-        # Step 5: Compile final resume
+        print("📝 Generating skills...")
+        skills_result = self.skills_chain.invoke({
+            "job_posting": job_posting
+        })
+        state["skills"] = skills_result["skills"]
+
+        # Step 3: Select Projects
+        print("📝 Selecting projects...")
+        project_selection_results = self.project_selecion_chain.invoke({
+            "job_posting": job_posting
+        })
+        state["project_names"] = project_selection_results["project_names"]
+
+        # Step 4: Summarize Projects
+        print("📝 Summarizing projects...")
+        project_summaries_results = self.project_summaries_chain.invoke({
+            "job_posting": job_posting,
+            "project_names": state["project_names"]
+        })
+        state["project_summaries"] = project_summaries_results["project_summaries"]
+
+        print("📝 Generating highlights...")
+        highlights_results = self.highlight_chain.invoke({
+            "job_posting": job_posting,
+            "experiences": state["experiences"],
+            "skills": state["skills"],
+            "project_summaries": state["project_summaries"]   
+        })
+        state["highlights"] = highlights_results["highlights"]
         
         print("✅ Resume generation complete!")
         return state
@@ -75,10 +105,10 @@ class AriaResumeGenerator:
         #     projects=result_state["project_summaries"]
         # )
         latex_code = LatexFormatter.format_resume(
-            highlights="",
+            highlights=result_state["highlights"],
             experiences=result_state["experiences"],
-            skills="",
-            projects=""
+            skills=result_state["skills"],
+            projects=result_state["project_summaries"]
         )
         output_dir = f"./output/resumes/{result_state['company']}"
         latex_filename = f"{result_state['position']}.tex"

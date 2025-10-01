@@ -225,6 +225,11 @@ class PromptTemplates:
     \\resumeItem{{\\textbf{{Domain Area 4:}} Comprehensive statement showcasing relevant expertise with \\textbf{{key technologies}} and demonstrable outcomes.}}
     \\resumeItem{{\\textbf{{Domain Area 5:}} Comprehensive statement showcasing relevant expertise with \\textbf{{key technologies}} and demonstrable outcomes.}}
 
+    EXAMPLE OUTPUT:
+    \\resumeItem{{\\textbf{{Machine Learning \\& AI:}} 5+ years developing \\textbf{{deep learning}} models using \\textbf{{PyTorch}} \\& \\textbf{{TensorFlow}} with 95\\% accuracy improvements.}}
+
+    Note: Always use \\& instead of & for ampersands in LaTeX text.
+
     FORMATTING GUIDELINES:
     - Each highlight should start with a \\textbf{{domain area}} that matches job requirements
     - Bold all technical skills, technologies, frameworks, and methodologies using \\textbf{{}}
@@ -233,6 +238,7 @@ class PromptTemplates:
     - Use strong, confident language that demonstrates expertise
     - Each highlight should be 1-2 lines maximum for readability
     - Order highlights by importance to the job posting
+    - IMPORTANT: Use proper LaTeX escaping - write \\& instead of & for ampersands in text
 
     Generate the LaTeX highlight of qualifications:
     """)
