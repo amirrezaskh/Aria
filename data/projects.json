@@ -1,0 +1,190 @@
+{
+  "projects": [
+    {
+      "title": "Federated Learning enabled Digital Twin",
+      "readme": "./projects/DigitalTwin.md",
+      "github": "https://github.com/amirrezaskh/DigitalTwin",
+      "description": "This project implements a novel Digital Twin system for smart building management using blockchain-enabled federated learning. We developed a Temporal Fusion Transformer (TFT) for predicting temperature, CO2, and humidity levels across 76 rooms within a University of Manitoba smart building, while ensuring data privacy and security through decentralized training.",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "PyTorch Lightning",
+        "PyTorch Forecasting",
+        "Pandas",
+        "Flask",
+        "Express.js",
+        "Docker",
+        "Hyperledger Fabric"
+      ]
+    },
+    {
+      "title": "Mini Task Manager",
+      "readme": "./projects/MiniTaskManager.md",
+      "github": "https://github.com/amirrezaskh/mini-task-manager",
+      "description": "A modern, full-stack task management application built with Django REST Framework and React. This project demonstrates clean architecture principles, secure token-based authentication, and a responsive Material-UI interface for managing personal tasks efficiently.",
+      "stack": [
+        "Django",
+        "Django REST Framework",
+        "Python",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Material-UI",
+        "SQLite"
+      ]
+    },
+    {
+      "title": "Proof of Collaborative Learning (PoCL)",
+      "readme": "./projects/PoCL.md",
+      "github": "https://github.com/amirrezaskh/Proof-of-Collaborative-Learning",
+      "description": "This project implements PoCL, a novel blockchain consensus mechanism that replaces energy-intensive mining with a federated learning system. Miners collaboratively train a deep learning model, and winners are selected based on model performance through a democratic voting system. The system uses Hyperledger Fabric for the blockchain, a custom Python-based federated learning framework with TensorFlow, and Express.js as an API gateway.",
+      "stack": [
+        "Python",
+        "TensorFlow",
+        "Flask",
+        "Node.js",
+        "Express.js",
+        "Hyperledger Fabric",
+        "Docker",
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Blockchain-enabled Personalized Federated Learning (BPFL)",
+      "readme": "./projects/BPFL.md",
+      "github": "https://github.com/amirrezaskh/BPFL",
+      "description": "This project implements a novel framework that combines personalized federated learning with blockchain technology. It addresses data heterogeneity and participant incentivization by using a token-based reward system and a contribution-weighted aggregation method. The system is built with Hyperledger Fabric for secure transactions and uses a custom federated learning framework with PyTorch to train models on datasets like MNIST and CIFAR-10.",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "Hyperledger Fabric",
+        "Docker",
+        "Node.js",
+        "Express.js",
+        "JavaScript",
+        "Flask",
+        "Matplotlib"
+      ]
+    },
+    {
+      "title": "Sharded and Blockchain-Enabled SplitFed Approaches",
+      "readme": "./projects/SSFL-BSFL.md",
+      "github": "https://github.com/amirrezaskh/SSFL-BSFL",
+      "description": "This project implements and compares four distributed machine learning frameworks: Split Learning (SL), SplitFed Learning (SFL), Sharded SplitFed Learning (SSFL), and Blockchain-enabled SplitFed Learning (BSFL). It evaluates these approaches under various conditions, including different numbers of participating nodes and scenarios with data poisoning attacks, with the goal of enhancing distributed and privacy-preserving machine learning.",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "Hyperledger Fabric",
+        "Docker",
+        "Node.js",
+        "Express.js",
+        "JavaScript",
+        "Flask",
+        "Matplotlib"
+      ]
+    },
+    {
+      "title": "Paper Summarizer",
+      "readme": "./projects/PaperSummarizer.md",
+      "github": "https://github.com/amirrezaskh/paper-summarizer",
+      "description": "An intelligent academic paper summarization system that combines computer vision and natural language processing to extract, analyze, and summarize research papers from PDF format. It uses object detection to identify document elements, OCR for text extraction, vision-language models for figure analysis, and large language models for generating comprehensive summaries.",
+      "stack": [
+        "Python",
+        "OpenCV",
+        "EasyOCR",
+        "Detectron2",
+        "PyTorch",
+        "Flask",
+        "Ollama",
+        "LLaVA",
+        "Llama 3.2",
+        "Pandoc"
+      ]
+    },
+    {
+      "title": "MarkMate",
+      "readme": "./projects/MarkMate.md",
+      "github": "https://github.com/amirrezaskh/markmate",
+      "description": "MarkMate is an AI-powered educational platform that automates assignment grading for instructors. It features a microservices architecture with a React frontend, a Django REST API backend with a PostgreSQL database, and a Flask-based LLM microservice that utilizes GPT-4 to provide automated grading based on custom rubrics.",
+      "stack": [
+        "React",
+        "React Router",
+        "Vite",
+        "Tailwind CSS",
+        "Node.js",
+        "Django",
+        "Django REST Framework",
+        "Python",
+        "PostgreSQL",
+        "Flask",
+        "LangChain",
+        "GPT-4",
+        "PyPDF"
+      ]
+    },
+    {
+      "title": "CIFAR-10 Generative Model Evaluation",
+      "readme": "./projects/CIFAR-10 Generative Model Evaluation.md",
+      "github": "https://github.com/amirrezaskh/Unified-Image-Evaluation-Metric",
+      "description": "This project evaluates generative models, specifically diffusion models, on the CIFAR-10 dataset using a suite of custom metrics. It employs a pre-trained ResNet-50 classifier to extract features from both real and generated images and then computes Precision, Recall, Generalization Rate, and F1 Score based on nearest-neighbor analysis.",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "Torchvision",
+        "scikit-learn",
+        "NumPy",
+        "ResNet-50",
+        "Diffusion Models"
+      ]
+    },
+    {
+      "title": "PyFed",
+      "readme": "./projects/PyFed.md",
+      "github": "https://github.com/amirrezaskh/PyFed",
+      "description": "PyFed is an open-source, lightweight federated learning framework that facilitates the implementation of federated learning algorithms using standard TensorFlow datasets or custom preprocessed data. The framework uses a client-server architecture with sockets, processes, and threads, and currently supports the FedAvg policy.",
+      "stack": [
+        "Python",
+        "TensorFlow",
+        "scikit-learn",
+        "NumPy",
+        "Sockets",
+        "Threads",
+        "Processes",
+        "TensorBoard"
+      ]
+    },
+    {
+      "title": "Facial Landmark & Boundary Detection",
+      "readme": "./projects/FacialBoundary.md",
+      "github": "https://github.com/amirrezaskh/Facial-Boundary-and-Facial-Landmarks-Detection-using-Convolutional-Neural-Networks",
+      "description": "This project implements a computer vision pipeline for real-time multi-face detection and landmark localization. It utilizes dual Faster R-CNN models—one trained to detect facial boundaries and the other to extract 68 facial landmarks—to provide a robust solution for real-time facial feature extraction.",
+      "stack": [
+        "Python",
+        "OpenCV",
+        "TensorFlow",
+        "Faster R-CNN",
+        "Neural Networks",
+        "Computer Vision"
+      ]
+    },
+    {
+      "title": "Aria",
+      "readme": "./projects/Aria.md",
+      "github": "https://github.com/amirrezaskh/aria",
+      "description": "Aria is an intelligent resume and cover letter generation system that leverages advanced AI to create tailored, professional documents based on specific job postings. Using LangChain workflows and OpenAI's GPT-4o-mini, it analyzes job requirements and dynamically generates customized resume sections, technical skills summaries, project selections, and highlight qualifications, all formatted in professional LaTeX for PDF compilation.",
+      "stack": [
+        "Python",
+        "LLM",
+        "LangChain",
+        "LangGraph",
+        "OpenAI GPT-4o-mini",
+        "OpenAI Embeddings",
+        "LaTeX",
+        "PyPDF",
+        "JSON",
+        "Regular Expressions",
+        "Jupyter Notebook"
+      ]
+    }
+  ]
+}
