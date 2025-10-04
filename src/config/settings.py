@@ -23,10 +23,17 @@ class Settings(BaseSettings):
     chunk_size: int = Field(1000, env="CHUNK_SIZE")
     chunk_overlap: int = Field(200, env="CHUNK_OVERLAP")
     max_retries: int = Field(3, env="MAX_RETRIES")
+    num_docs: int = Field(8, env="NUM_DOCS")
     
     # File Paths
     data_dir: str = Field("./data", env="DATA_DIR")
     output_dir: str = Field("./output", env="OUTPUT_DIR")
+    papers_dir: str = Field("./data/papers", env="PAPERS_DIR")
+    projects_dir: str = Field("./data/projects", env="PROJECTS_DIR")
+    transcripts_dir: str = Field("./data/transcripts", env="TRANSCRIPTS_DIR")
+    resumes_dir: str = Field("./output/resumes", env="RESUMES_DIR")
+    cover_letters_dir: str = Field("./output/cover_letters", env="COVER_LETTERS_DIR")
+
     experiences_file: str = Field("experiences.json", env="EXPERIENCES_FILE")
     skills_file: str = Field("technical_skills.json", env="SKILLS_FILE")
     projects_file: str = Field("projects.json", env="PROJECTS_FILE")

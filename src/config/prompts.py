@@ -243,3 +243,108 @@ class PromptTemplates:
 
     Generate the LaTeX highlight of qualifications:
     """)
+
+    COVER_LETTER_PROMPT = PromptTemplate.from_template("""
+    You are an expert cover letter writer specializing in creating compelling, personalized cover letters that effectively connect a candidate's background to specific job opportunities.
+
+    Your task is to analyze the job posting, personalized resume, and retrieved context to generate ONLY the cover letter content paragraphs in plain LaTeX format.
+
+    POSITION: {position}
+    COMPANY: {company}
+    JOB POSTING:
+    {job_posting}
+
+    PERSONALIZED RESUME CONTENT:
+    Highlights: {resume_highlights}
+    Experiences: {resume_experiences}
+    Skills: {resume_skills}
+    Projects: {resume_projects}
+
+    RETRIEVED CONTEXT FROM KNOWLEDGE BASE:
+    {retrieved_context}
+                                                       
+    INSTRUCTIONS:
+    1. Analyze the job posting to identify:
+       - Company mission, values, and culture
+       - Key technical requirements and preferred technologies
+       - Required experience level and responsibilities
+       - Specific skills and qualifications sought
+
+    2. Use the personalized resume content to:
+       - Highlight the most relevant experiences and achievements
+       - Showcase technical skills that match job requirements
+       - Reference specific projects that demonstrate required capabilities
+       - Quantify accomplishments where possible
+
+    3. Leverage the retrieved context to:
+       - Add depth and authenticity to your statements
+       - Reference relevant research, projects, or experiences not in the resume
+       - Demonstrate domain knowledge and passion for the field
+       - Show progression and learning from past experiences
+
+    4. Follow the template structure but adapt content to:
+       - Match the company's tone and industry language
+       - Create a narrative that connects past experiences to future contributions
+       - Show genuine enthusiasm for the specific role and company
+       - Address any potential gaps or explain career transitions
+
+
+    CRITICAL OUTPUT REQUIREMENTS:
+    - Generate ONLY the cover letter content paragraphs
+    - DO NOT include any LaTeX document structure (\\documentclass, \\begin{{document}}, \\begin{{letter}}, \\end{{letter}}, \\end{{document}})
+    - DO NOT include any explanations, introductions, or meta-commentary
+    - DO NOT include salutations like "Dear Hiring Manager" or closings like "Sincerely"
+    - Start directly with the first paragraph content
+    - End with the last paragraph content
+    - Use clean paragraph breaks (double newlines) between paragraphs
+
+    CONTENT STRUCTURE:
+    Write exactly 3-4 paragraphs of cover letter content:
+
+    Paragraph 1: Express enthusiasm for the specific role and company, briefly state your relevant background and why you're applying.
+
+    Paragraph 2: Highlight your most relevant technical experiences and projects with specific examples that match the job requirements.
+
+    Paragraph 3: Demonstrate alignment with the company's mission and technology stack, referencing retrieved context to show deeper knowledge and genuine interest.
+
+    Paragraph 4 (optional): Reiterate enthusiasm and mention specific contributions you can make to the team and company.
+
+                                                       
+    COVER LETTER STRUCTURE:
+    1. Opening paragraph: Express enthusiasm for the specific role and company, briefly state your relevant background
+    2. Body paragraph 1: Highlight relevant technical experience and projects with specific examples
+    3. Body paragraph 2: Demonstrate alignment with company mission/technology stack, reference retrieved context for depth
+    4. Closing paragraph: Reiterate enthusiasm, mention specific contributions you can make, professional closing
+
+    TONE AND STYLE:
+    - Professional yet enthusiastic
+    - Confident but not boastful
+    - Specific and detailed, not generic
+    - Forward-looking and solution-oriented
+    - Authentic and genuine
+    LATEX FORMATTING REQUIREMENTS:
+    - Use proper LaTeX escaping: \\& instead of & for ampersands
+    - Use \\% for percentages in text  
+    - Use \\textbf{{}} for emphasizing key technologies, company names, and achievements
+    - Write in clean, readable paragraph format
+    - Use standard paragraph separation (double newlines)
+
+    CONTENT GUIDELINES:
+    - Reference specific technologies, frameworks, and methodologies from the job posting
+    - Use metrics and quantified achievements where available
+    - Show understanding of the company's challenges and how you can help
+    - Demonstrate continuous learning and adaptability
+    - Connect past experiences to future potential contributions
+    - Use retrieved context to add unique insights or relevant background
+    - Be professional yet enthusiastic, confident but not boastful
+    - Make it specific and detailed, not generic
+
+    OUTPUT FORMAT EXAMPLE:
+    I am excited to apply for the {{position}} position at \\textbf{{{{company name}}}}. With my background in \\textbf{{relevant technology}} and experience in \\textbf{{relevant domain}}, I am eager to contribute to your team's mission of advancing \\textbf{{company focus area}}.
+
+    In my recent projects, I have built scalable applications using \\textbf{{specific technologies}} that align with your requirements. For example, in my \\textbf{{project name}} project, I developed \\textbf{{specific implementation}} that resulted in \\textbf{{quantified outcome}}. My experience with \\textbf{{relevant technology stack}} has prepared me to tackle the challenges outlined in your job posting.
+
+    I am particularly drawn to \\textbf{{{{company name}}}}'s commitment to \\textbf{{company values/mission}}. My research in \\textbf{{relevant area from context}} has given me deep insights into \\textbf{{relevant domain knowledge}}, and I am excited about the opportunity to apply this knowledge in a production environment where I can help \\textbf{{specific company goals}}.
+
+    Generate the cover letter content paragraphs following this exact format:
+    """)

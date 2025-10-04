@@ -144,5 +144,90 @@ class LatexFormatter:
 """
     
     @staticmethod
-    def format_cover_letter():
-        pass
+    def format_cover_letter(position, company, cover_letter):
+        return f"""
+\\documentclass[10pt,letter]{{letter}}
+\\usepackage[utf8]{{inputenc}}
+
+\\NeedsTeXFormat{{LaTeX2e}}
+\\ProvidesPackage{{TLCcoverletter}}[12/27/21 cover letter package]
+
+\\RequirePackage[T1]{{fontenc}}
+\\RequirePackage[default,semibold]{{sourcesanspro}}
+\\RequirePackage[12pt]{{moresize}}
+\\usepackage{{anyfontsize}}
+\\RequirePackage{{csquotes}}
+
+\\RequirePackage[margin=.5in]{{geometry}}
+\\setlength{{\\parskip}}{{1em}}
+
+\\RequirePackage{{xcolor}}
+
+\\RequirePackage{{hyperref}}
+\\hypersetup{{colorlinks=true,urlcolor=highlight}}
+
+
+\\pagenumbering{{gobble}}
+
+\\RequirePackage{{standalone}}
+\\RequirePackage{{import}}
+
+\\RequirePackage[english]{{babel}}
+\\RequirePackage{{blindtext}}
+
+\\def\\name{{Amirreza Sokhankhosh}}
+\\signature{{\\name}}
+\\address{{111 Steeles Ave E\\\\
+North York, ON\\\\
+L3T 1A4}}
+\\def\\phone{{(431) 293-6515}}
+\\def\\email{{amirreza.skhn@gmail.com}}
+\\def\\LinkedIn{{amirrezaskh}}
+\\def\\github{{amirrezaskh}}
+\\def\\role{{ {position} }}
+
+
+\\RequirePackage{{fancyhdr}}
+\\fancypagestyle{{plain}}{{
+\\fancyhf{{}}
+\\lhead{{\\phone \\\\
+	    \\href{{mailto:\\email}}{{\\email}}}}
+	\\chead{{
+	    \\centering {{\\Large \\textbf\\name}} \\\\
+	    {{\\color{{highlight}} \\large{{\\role}}}}}}
+	    \\rhead{{
+	    Portfolio: \\href{{https://amirrezaskh.com}}{{amirrezaskh.com}}\\\\
+	    \\href{{https://github.com/\\github}}{{github.com/\\github}} \\\\
+	    \\href{{https://www.linkedin.com/in/\\LinkedIn}}{{linkedin.com/in/\\LinkedIn}}}}
+\\renewcommand{{\\headrulewidth}}{{2pt}}
+\\renewcommand{{\\headrule}}{{\\hbox to\\headwidth{{
+  \\color{{highlight}}\\leaders\\hrule height \\headrulewidth\\hfill}}}}
+}}
+\\pagestyle{{plain}}
+
+\\setlength{{\\headheight}}{{90pt}}
+\\setlength{{\\headsep}}{{0pt}}
+
+\\makeatletter
+\\let\\ps@empty\\ps@plain
+\\let\\ps@firstpage\\ps@plain
+\\makeatother
+
+\\begin{{document}}
+\\definecolor{{highlight}}{{RGB}}{{61, 90, 128}}
+\\begin{{letter}}{{
+Hiring Team \\\\ 
+{position} \\\\
+{company} }}
+
+\\opening{{Dear Hiring Team,}}
+
+\\setlength\\parindent{{.5in}}
+
+{cover_letter}
+
+\\closing{{Sincerely,}}
+\\end{{letter}}
+
+\\end{{document}}
+"""

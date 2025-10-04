@@ -19,11 +19,15 @@ class ResumeState(TypedDict):
     project_names: List[str]
     project_summaries: str
     highlights: str
+    cover_letter: str
     
     # Final outputs
     resume_latex: str
-    latex_file: Optional[str]
-    pdf_file: Optional[str]
+    resume_latex_file: Optional[str]
+    resume_pdf_file: Optional[str]
+    cover_letter_latex: str
+    cover_letter_latex_file: Optional[str]
+    cover_letter_pdf_file: Optional[str]
     
     # RAG context (for cover letters)
     context: List[Document]
