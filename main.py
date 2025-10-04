@@ -38,40 +38,55 @@ def main():
     
     # Sample job posting
     job_posting = """
-    We are on the hunt for passionate developers ready to design and implement efficient APIs and subsystems that enhance every aspect of our system. While your main focus will be tackling data-driven challenges, your versatility will shine as you collaborate on dev-ops and front-end tasks whenever needed.
+About the job
+Data Science (DS) 
+
+Are you excited about taking your technical career to new heights with a full-time, W-2 role as a consultant in a dynamic and rapidly growing company? If you are, let's get in touch – your interest is the first step to starting the conversation. 
 
 
-Alert Labs HVAC team is a small and innovative division within the company. Reporting to the VP, your contributions will cover a wide range of ideas and technology. Join us if you thrive in a dynamic environment and are eager to contribute to a team dedicated to delivering industry-leading products. If you’re enthusiastic, engaged, and ready to make an impact, we want to hear from you!
+
+What This Role Requires: 
+
+1-4 years of data analyst/ML/AI engineering work experience after your degree.
+Must have experience with both Python programming & SQL language developer.
+Should demonstrate experience developing end-to-end solutions.
+Demonstrated SQL experience.
+Additional experience with at least one: AWS, Azure or Databricks is preferred.
+Additional experience with Pyspark, AWS S3, Lambda, EC2/AZ, Data bricks, Machine
+learning (ML), GenAI/ Computer Vision, Theory of Probability, GitLab, R Programming, GCP & Airflow will be preferred.
 
 
-Responsibilities:
+To Qualify: 
 
-Take ownership for successfully executing software tasks and projects given higher-level requirements or scope
-Design small modules following SOLID and other design principles
-Select, adapt, and apply appropriate algorithms
-Collaborate with other team members and stakeholders to clarify requirements
-Get the project done, hands-on and with other team members
-Analyze problems and synthesize solutions applying both technical skill and consideration of the business case
+You should be willing to relocate anywhere in the US on a client project-to-project basis, as this is an onsite, in-office position.
+Strong English communication skills, both written and verbal.
+Bachelor’s Degree in Computer Science, Information Systems, Electrical Engineering,
+Mathematics, or a related quantitative field. Additional relevant Master’s degree is highly desirable for this role.
 
 
-Must Haves:
-At least 3 years of professional software development experience
-Undergraduate degree in Software Engineering, Computer Science, or equivalent experience
-Experience developing software in Python or Typescript
-Experience with dev-ops: Jenkins, AWS, Bitbucket, Kafka
-Excellent computer science fundamentals including data structures and algorithms, databases, and/or distributed systems
-A track record of success delivering complex software projects
-Ability to communicate effectively with people in different roles. You are open to learning and mentoring.
+What’s In It For YOU? 
+
+Gain valuable, career-enhancing experience working with our Fortune 1,000 clients.
+Receive relocation support for training and project assignments, as required.
+Enjoy comprehensive W2 employee benefits.
+Access full coverage medical, dental, and vision insurance.
+Qualify for 401K eligibility after one year of employment.
+Benefit from basic life/AD&D and dependent disability (short/long term) coverage.
 
 
-Nice to Haves:
-Data Science experience
-Experience with Node.js, React, Dart/Flutter or a lower-level language such as C++
-Experience or introductory course in Machine Learning or Data Science
+Who Are We? 
+
+We are a premier IT consulting firm specializing in delivering top-tier Data Science solutions to companies across various sectors such as finance, energy, e-commerce, logistics, travel, retail, entertainment, automotive, and healthcare. Our clientele includes industry giants like Microsoft, Google, Johnson & Johnson, Fannie Mae, Walmart, PayPal, T-Mobile, McDonald's, CVS, Verizon, Charter, Nike, Dell, Wells Fargo, Capital One, and Charles Schwab, among many others. As a consultant, joining our team means you'll also have the opportunity to work with these renowned and leading companies and gain valuable, career-accelerating experience.
+
+
+Company Highlights:
+
+• Our Specialization: Providing IT consulting services.
+• Experience: Over 25 years of combined domestic and international expertise in IT consulting serving hundreds of Fortune 1,000 and innovative startup clients.
     """
 
-    company = "Alert Labs Inc."
-    position = "Software Developer"
+    company = "Tech Consulting"
+    position = "Junior Data Scientist"
 
     state = ResumeState(
             job_posting=job_posting,
@@ -89,7 +104,7 @@ Experience or introductory course in Machine Learning or Data Science
             generation_metadata={}
         )
     
-    # setup_vector_store()
+    setup_vector_store()
 
     # resume_workflow = Worlflows.create_resume_workflow()
     resume_cover_letter_workflow = Worlflows.create_resume_cover_letter_workflow()
