@@ -8,7 +8,7 @@ more maintainable code.
 from dotenv import load_dotenv
 from src.chains.context_retrieval_chain import ContextRetrievalChain
 from src.workflows.workflows import Worlflows
-from src.workflows.states import ResumeState
+from src.workflows.states import ResumeState, CoverLetterState
 from src.config.settings import settings
 import os
 
@@ -88,30 +88,46 @@ Experience working in an agile or team-based setting
     company = "Dexian"
     position = "Junior BI developer"
 
-    state = ResumeState(
-            job_posting=job_posting,
-            company=company,
-            position=position,
-            experiences="",
-            skills="", 
-            project_names=[],
-            project_summaries="",
-            highlights="",
-            resume_latex="",
-            tex_file=None,
-            pdf_file=None,
-            context=[],
-            generation_metadata={}
-        )
+    # state = ResumeState(
+    #         job_posting=job_posting,
+    #         company=company,
+    #         position=position,
+    #         experiences="",
+    #         skills="", 
+    #         project_names=[],
+    #         project_summaries="",
+    #         highlights="",
+    #         resume_latex="",
+    #         tex_file=None,
+    #         pdf_file=None,
+    #         context=[],
+    #         generation_metadata={}
+    #     )
+
+    resume_pdf_file = "./output/resumes/Dexian/Junior BI developer.pdf"
+
+    state = CoverLetterState(
+        job_posting=job_posting,
+        company=company,
+        position=position,
+        resume_pdf_file=resume_pdf_file,
+        resume="",
+        cover_letter="",
+        cover_letter_latex="",
+        cover_letter_latex_file=None,
+        cover_letter_pdf_file=None,
+        context=[]
+    )
     
-    setup_vector_store()
+    # setup_vector_store()
 
     # resume_workflow = Worlflows.create_resume_workflow()
-    resume_cover_letter_workflow = Worlflows.create_resume_cover_letter_workflow()
+    # resume_cover_letter_workflow = Worlflows.create_resume_cover_letter_workflow()
+    cover_letter_workflow = Worlflows.create_cover_letter_worklflow()
 
-    print(f"🚀 Generating resume and cover letter for {position} at {company}")
-    resume_cover_letter_workflow.invoke(state)
-    print("🎁 Resume and cover letter created.")
+    print(f"🚀 Generating cover letter for {position} at {company}")
+    cover_letter_workflow.invoke(state)
+    print("🎁 cover letter created.")
 
 
 if __name__ == "__main__":

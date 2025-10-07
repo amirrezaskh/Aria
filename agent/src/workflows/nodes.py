@@ -1,9 +1,9 @@
-from .states import ResumeState
+from .states import ResumeState, CoverLetterState
 from ..format.latex_formatter import LatexFormatter
 from ..format.latex_compiler import LatexCompiler
 from ..config.settings import settings
 from langchain.docstore.document import Document
-
+from pypdf import PdfReader
 
 class Nodes:
     @staticmethod
@@ -142,7 +142,7 @@ class Nodes:
         return state
 
     @staticmethod
-    def add_cover_letter_context(state: ResumeState) -> ResumeState:
+    def add_cover_letter_context_node(state: ResumeState) -> ResumeState:
         from ..chains.context_retrieval_chain import ContextRetrievalChain
         context_retrieval_chain = ContextRetrievalChain()
         document = Document(
@@ -153,4 +153,44 @@ class Nodes:
                 "company": state["company"]
             })
         context_retrieval_chain.add_context([document])
+        return state
+    
+
+    @staticmethod
+    def load_resume_node(state: CoverLetterState):
+        reader = PdfReader("./output/resumes/Apple/AI Engineer.pdf")
+        resume = ""
+        for page in reader.pages:
+            resume += page.extract_text()
+        state["resume"] = resume
+        
+        return state
+    
+    @staticmethod
+    def retrieve_context_only_cover_letter_node(state: CoverLetterState) -> CoverLetterState:
+        print("🔎 Retrieving context...")
+        from ..chains.context_retrieval_chain import ContextRetrievalChain
+        context_retrieval_chain = ContextRetrievalChain()
+        result = context_retrieval_chain.retrieve_context({
+            "job_posting": state["job_posting"],
+            "company": state["company"],
+            "position": state["position"],
+            "resume": state["resume"],
+        })
+        state["context"] = result["context"]
+        return state
+
+    @staticmethod
+    def generate_only_cover_letter_node(state: CoverLetterState):
+        print("📝 Generating cover letter...")
+        from ..chains.cover_letter_chain import CoverLetterChain
+        cover_letter_chain = CoverLetterChain(withResume=False)
+        result = cover_letter_chain.invoke({
+            "position": state["position"],
+            "company": state["company"],
+            "job_posting": state["job_posting"],
+            "resume": state["resume"],
+            "context": state["context"]
+        })
+        state["cover_letter"] = result["cover_letter_tex"]
         return state

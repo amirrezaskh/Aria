@@ -36,19 +36,21 @@ class ResumeState(TypedDict):
     generation_metadata: dict
 
 
-class OptimizationState(TypedDict):
-    """State definition for resume optimization workflow"""
-    
+class CoverLetterState(TypedDict):
     # Input
-    original_state: ResumeState
-    target_pages: int
-    max_iterations: int
-    
-    # Current iteration
-    current_iteration: int
-    current_strategy: dict
-    current_pages: Optional[int]
-    
-    # Results
-    optimized_state: Optional[ResumeState]
-    optimization_history: List[dict]
+    job_posting: str
+    company: str
+    position: str
+    resume_pdf_file: str
+
+    # Intermediate results
+    resume: str
+    cover_letter: str
+
+    # Final outputs
+    cover_letter_latex: str
+    cover_letter_latex_file: Optional[str]
+    cover_letter_pdf_file: Optional[str]
+
+    # RAG context (for cover letters)
+    context: List[Document]

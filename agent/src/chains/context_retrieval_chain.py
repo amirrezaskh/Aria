@@ -74,13 +74,18 @@ class ContextRetrievalChain(BaseChain):
         if state.get("position"):
             query_parts.append(f"position: {state['position']}")
 
-        if state.get("skills"):
-            skills_text = state["skills"]
-            query_parts.append(f"technical skills: {skills_text}")
+        try:
+            if state.get("skills"):
+                skills_text = state["skills"]
+                query_parts.append(f"technical skills: {skills_text}")
 
-        if state.get("experiences"):
-            exp_text = state["experiences"][:300]
-            query_parts.append(f"experience: {exp_text}")
+            if state.get("experiences"):
+                exp_text = state["experiences"][:300]
+                query_parts.append(f"experience: {exp_text}")
+        except:
+            if state.get("resume"):
+                resume_text = state["resume"]
+                query_parts.append(f"resume: {resume_text}")
 
         query = " ".join(query_parts)
 
