@@ -1,0 +1,195 @@
+{
+    "CGPA": 3.34,
+    "courses": [
+        {
+            "title": "Fundamental of Computer & Programming",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Computer Workshop",
+            "credits": 1,
+            "grade": "A"
+        },
+        {
+            "title": "Calculus I",
+            "credits": 3,
+            "grade": "B"
+        },
+        {
+            "title": "Differential Equations",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Advanced Programming",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Calculus II",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Data Structures",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Theory of Formal Languages & Automata",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Engineering Mathematics",
+            "credits": 3,
+            "grade": "B"
+        },
+        {
+            "title": "Digital Systems I",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Engineering Probabilities",
+            "credits": 3,
+            "grade": "B"
+        },
+        {
+            "title": "Algorithm Design",
+            "credits": 3,
+            "grade": "A"
+        },
+        {
+            "title": "Computer Architecture",
+            "credits": 3,
+            "grade": "B"
+        },
+        {
+            "title": "Computer Structure & Language",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Principles of Compiler Design",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Hardware Software Co-Design",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Operating Systems",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Signals & Systems",
+            "credits": 3,
+            "grade": "B"
+        },
+        {
+            "title": "Logic Circuits & Computer Architecture Lab",
+            "credits": 1,
+            "grade": "C"
+        },
+        {
+            "title": "Electric Circuits",
+            "credits": 3,
+            "grade": "A"
+        },
+        {
+            "title": "Digital Electronics & VLSI",
+            "credits": 3,
+            "grade": "A"
+        },
+        {
+            "title": "Computer Networks I",
+            "credits": 3,
+            "grade": "A"
+        },
+        {
+            "title": "Operating Systems Lab.",
+            "credits": 1,
+            "grade": "A+"
+        },
+        {
+            "title": "Principles of Database Design",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Microprocessors & Assembly Language",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Computer Networks II",
+            "credits": 3,
+            "grade": "A"
+        },
+        {
+            "title": "Linear Algebra",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Artificial Intelligence & Expert Systems",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Graph Theory & Algorithms",
+            "credits": 3,
+            "grade": "A"
+        },
+        {
+            "title": "Internet Engineering",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "System Analysis & Design",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Computer Networks Lab",
+            "credits": 1,
+            "grade": "A+"
+        },
+        {
+            "title": "Fundamentals of Language & Speech Processing",
+            "credits": 3,
+            "grade": "A"
+        },
+        {
+            "title": "Fundamentals of Computer Vision",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Project",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Software Engineering",
+            "credits": 3,
+            "grade": "A+"
+        },
+        {
+            "title": "Computer Aided Digital System Design",
+            "credits": 3,
+            "grade": "C"
+        },
+        {
+            "title": "Microprocessor Lab. I",
+            "credits": 1,
+            "grade": "A+"
+        }
+    ]
+}

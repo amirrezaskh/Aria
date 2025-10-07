@@ -1,0 +1,5 @@
+.env
+papers/
+.vscode/
+output/
+__pycache__/
