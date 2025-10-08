@@ -15,6 +15,19 @@ PyPDF2>=3.0.0
 pandas>=2.0.0
 numpy>=1.24.0
 
+# Database
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+flask-sqlalchemy>=3.0.0
+
+# Web framework
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# Vector similarity search
+pgvector>=0.2.0
+openai>=1.0.0
+
 # Development dependencies
 pytest>=7.0.0
 black>=23.0.0
@@ -23,4 +36,4 @@ mypy>=1.0.0
 
 # Optional: For enhanced functionality
 tiktoken>=0.5.0  # Token counting
-faiss-cpu>=1.7.0  # Vector similarity search
+faiss-cpu>=1.7.0  # Vector similarity search (backup)
