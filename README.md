@@ -1,7 +1,42 @@
-<h2 align="center" style="display: inline-block; border-bottom: 2px solid #ccc; padding-bottom: 6px;">
-  <img src="frontend/public/agent.png" alt="Aria Logo" width="60" height="60" style="vertical-align: middle; margin-right: 10px;">
-  Aria – AI-Powered Resume & Cover Letter Generation Platform
+<h2 align="center" style="
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+  padding-bottom: 6px;
+  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #1a202c;
+">
+  <img 
+    src="frontend/public/agent.png" 
+    alt="Aria Logo" 
+    width="60" 
+    height="60" 
+    style="
+      vertical-align: middle; 
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    "
+  >
+  <span style="
+    font-weight: 700;
+    background: linear-gradient(45deg, #1976d2, #9c27b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-right: 8px;
+  ">
+    Aria
+  </span>
+  <span style="color: #ffffffbd;">
+    – AI-Powered Resume & Cover Letter Generation Platform
+  </span>
 </h2>
+
+
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![React 19](https://img.shields.io/badge/react-19.1.1-blue.svg)](https://reactjs.org/)
