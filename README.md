@@ -127,7 +127,7 @@ Aria/
 ### High-Level Architecture
 
 ```mermaid
-graph TB
+graph TD
     subgraph "Client Layer"
         WEB[React Web App]
         EXT[Chrome Extension]
