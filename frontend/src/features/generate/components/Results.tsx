@@ -3,9 +3,19 @@ import {
   Typography, 
   Button, 
   Stack,
-  Alert
+  Alert,
+  Card,
+  CardContent,
+  Divider
 } from "@mui/material";
-import { Download, Visibility } from "@mui/icons-material";
+import { 
+  Download, 
+  Visibility, 
+  CheckCircle,
+  Description,
+  Email,
+  Add
+} from "@mui/icons-material";
 import type { ResultsProps } from "../types";
 
 export default function Results({ 
@@ -25,86 +35,207 @@ export default function Results({
   const isCoverLetterAvailable = Boolean(paths.coverLetterPath);
 
   return (
-    <Stack spacing={3}>
-      <Typography variant="h5" align="center" gutterBottom color="success.main">
-        ✅ Documents Generated Successfully!
-      </Typography>
-      
-      <Typography variant="body1" color="text.secondary" align="center">
-        Your personalized resume and cover letter for{' '}
-        <strong>{formData.positionTitle}</strong> at{' '}
-        <strong>{formData.companyName}</strong> are ready for download.
-      </Typography>
+    <Stack spacing={4}>
+      {/* Success Header */}
+      <Box sx={{ textAlign: 'center' }}>
+        <CheckCircle 
+          sx={{ 
+            fontSize: 64, 
+            color: 'success.main',
+            mb: 2
+          }} 
+        />
+        <Typography 
+          variant="h4" 
+          sx={{ 
+            fontWeight: 700, 
+            color: 'success.main',
+            mb: 1
+          }}
+        >
+          🎉 Success!
+        </Typography>
+        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 500, mx: 'auto' }}>
+          Your personalized documents for <br /> {formData.positionTitle} at {formData.companyName} are ready!
+        </Typography>
+      </Box>
 
       {/* Show warning if files are not available */}
       {(!isResumeAvailable || !isCoverLetterAvailable) && (
-        <Alert severity="warning">
+        <Alert 
+          severity="warning"
+          sx={{ 
+            borderRadius: 2,
+            '& .MuiAlert-message': { width: '100%' }
+          }}
+        >
           Some documents may not be available. Please try generating again if needed.
         </Alert>
       )}
 
+      {/* Download Cards */}
       <Box sx={{ 
         display: 'flex', 
-        gap: 2, 
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: 4, 
         justifyContent: 'center',
-        flexDirection: { xs: 'column', sm: 'row' }
+        alignItems: 'center',
+        width: '100%',
+        px: 2
       }}>
-        <Stack spacing={1} sx={{ minWidth: 200 }}>
-          <Button
-            variant="contained"
-            size="large"
-            startIcon={<Download />}
-            onClick={() => onDownload('resume')}
-            disabled={!isResumeAvailable}
-            fullWidth
-          >
-            Download Resume
-          </Button>
-          {isResumeAvailable && (
-            <Button
-              variant="outlined"
+        {/* Resume Card */}
+        <Card 
+          variant="outlined" 
+          sx={{ 
+            borderRadius: 3,
+            border: isResumeAvailable ? '2px solid' : '1px solid',
+            borderColor: 'primary.main',
+            position: 'relative',
+            overflow: 'visible',
+            width: { xs: '100%', sm: 300 },
+            flexShrink: 0
+          }}
+        >
+          {/* {isResumeAvailable && (
+            <Chip
+              label="Ready"
+              color="success"
               size="small"
-              startIcon={<Visibility />}
-              onClick={() => handlePreview('resume')}
-              fullWidth
-            >
-              Preview Resume
-            </Button>
-          )}
-        </Stack>
+              sx={{
+                position: 'absolute',
+                top: -8,
+                right: 16,
+                zIndex: 1
+              }}
+            />
+          )} */}
+          <CardContent sx={{ p: 3, textAlign: 'center' }}>
+            <Description sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
+            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
+              Resume
+            </Typography>
+            <Stack spacing={2}>
+              <Button
+                variant="contained"
+                size="large"
+                startIcon={<Download />}
+                onClick={() => onDownload('resume')}
+                disabled={!isResumeAvailable}
+                fullWidth
+                sx={{
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  '&:disabled': {
+                    opacity: 0.6
+                  }
+                }}
+              >
+                Download Resume
+              </Button>
+              {isResumeAvailable && (
+                <Button
+                  variant="outlined"
+                  size="medium"
+                  startIcon={<Visibility />}
+                  onClick={() => handlePreview('resume')}
+                  fullWidth
+                  sx={{ borderRadius: 2 }}
+                >
+                  Preview
+                </Button>
+              )}
+            </Stack>
+          </CardContent>
+        </Card>
         
-        <Stack spacing={1} sx={{ minWidth: 200 }}>
-          <Button
-            variant="outlined"
-            size="large"
-            startIcon={<Download />}
-            onClick={() => onDownload('coverLetter')}
-            disabled={!isCoverLetterAvailable}
-            fullWidth
-          >
-            Download Cover Letter
-          </Button>
-          {isCoverLetterAvailable && (
-            <Button
-              variant="outlined"
+        {/* Cover Letter Card */}
+        <Card 
+          variant="outlined" 
+          sx={{ 
+            borderRadius: 3,
+            border: isCoverLetterAvailable ? '2px solid' : '1px solid',
+            borderColor: 'secondary.main',
+            position: 'relative',
+            overflow: 'visible',
+            width: { xs: '100%', sm: 300 },
+            flexShrink: 0
+          }}
+        >
+          {/* {isCoverLetterAvailable && (
+            <Chip
+              label="Ready"
+              color="success"
               size="small"
-              startIcon={<Visibility />}
-              onClick={() => handlePreview('coverLetter')}
-              fullWidth
-            >
-              Preview Cover Letter
-            </Button>
-          )}
-        </Stack>
+              sx={{
+                position: 'absolute',
+                top: -8,
+                right: 16,
+                zIndex: 1
+              }}
+            />
+          )} */}
+          <CardContent sx={{ p: 3, textAlign: 'center' }}>
+            <Email sx={{ fontSize: 48, color: 'secondary.main', mb: 2 }} />
+            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
+              Cover Letter
+            </Typography>
+            <Stack spacing={2}>
+              <Button
+                variant="contained"
+                size="large"
+                startIcon={<Download />}
+                onClick={() => onDownload('coverLetter')}
+                disabled={!isCoverLetterAvailable}
+                fullWidth
+                color="secondary"
+                sx={{
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  '&:disabled': {
+                    opacity: 0.6
+                  }
+                }}
+              >
+                Download Letter
+              </Button>
+              {isCoverLetterAvailable && (
+                <Button
+                  variant="outlined"
+                  size="medium"
+                  startIcon={<Visibility />}
+                  onClick={() => handlePreview('coverLetter')}
+                  fullWidth
+                  color="secondary"
+                  sx={{ borderRadius: 2 }}
+                >
+                  Preview
+                </Button>
+              )}
+            </Stack>
+          </CardContent>
+        </Card>
       </Box>
 
-      <Button
-        variant="text"
-        onClick={onCreateAnother}
-        sx={{ alignSelf: 'center', mt: 2 }}
-      >
-        Create Another Resume
-      </Button>
+      <Divider sx={{ my: 2 }} />
+
+      {/* Create Another Button */}
+      <Box sx={{ textAlign: 'center' }}>
+        <Button
+          variant="outlined"
+          size="large"
+          startIcon={<Add />}
+          onClick={onCreateAnother}
+          sx={{ 
+            borderRadius: 2,
+            px: 4,
+            py: 1.5,
+            fontWeight: 600,
+            textTransform: 'none'
+          }}
+        >
+          Create Another Resume
+        </Button>
+      </Box>
     </Stack>
   );
 }

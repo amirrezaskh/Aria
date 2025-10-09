@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { 
   FormData, 
   ResumeStrategy, 
@@ -10,7 +10,42 @@ import type {
 } from "../types";
 import { API_ENDPOINTS, RESUME_PREVIEW_MAPPING } from "../constants";
 
-export function useGenerateForm() {
+// Utility function to convert absolute file paths to proper URLs for serving
+const convertPathToUrl = (filePath: string): string => {
+  if (!filePath) return "";
+  if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+    return filePath; // Already a URL
+  }
+  
+  // Extract the relative path from the absolute path
+  // Backend expects: output/resumes/CompanyName/Position.pdf or output/cover_letters/CompanyName/Position.pdf
+  // We need to extract: resumes/CompanyName/Position.pdf or cover_letters/CompanyName/Position.pdf
+  const pathParts = filePath.split('/');
+  const outputIndex = pathParts.lastIndexOf('output');
+  
+  if (outputIndex !== -1 && outputIndex < pathParts.length - 2) {
+    // Get everything after 'output' folder (includes resumes/cover_letters directory)
+    const relativePath = pathParts.slice(outputIndex + 1).join('/');
+    return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(relativePath)}`;
+  }
+  
+  // Fallback: just use filename
+  const filename = pathParts[pathParts.length - 1] || '';
+  return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(filename)}`;
+};
+
+interface ExtensionJobData {
+  title?: string;
+  company?: string;
+  description?: string;
+  location?: string;
+  salary?: string;
+  type?: string;
+  remote?: string;
+  requirements?: string[] | string;
+}
+
+export function useGenerateForm(extensionJobData?: ExtensionJobData | null) {
   const [currentStep, setCurrentStep] = useState<Step>('input');
   const [formData, setFormData] = useState<FormData>({
     jobDescription: "",
@@ -30,6 +65,24 @@ export function useGenerateForm() {
   const [isLoadingSimilarJobs, setIsLoadingSimilarJobs] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Handle Chrome extension job data
+  useEffect(() => {
+    if (extensionJobData) {
+      // Auto-populate form with extension data
+      const newFormData: FormData = {
+        jobDescription: extensionJobData.description || "",
+        companyName: extensionJobData.company || "",
+        positionTitle: extensionJobData.title || ""
+      };
+      
+      // Only update if the form is empty or different
+      if (!formData.jobDescription && !formData.companyName && !formData.positionTitle) {
+        setFormData(newFormData);
+        console.log('Auto-populated form with extension data:', newFormData);
+      }
+    }
+  }, [extensionJobData, formData.jobDescription, formData.companyName, formData.positionTitle]);
 
   const handleInputChange = (field: keyof FormData) => (
     event: React.ChangeEvent<HTMLInputElement>
@@ -113,17 +166,6 @@ export function useGenerateForm() {
       
       const result = await response.json();
 
-      // Convert absolute file paths to proper URLs for serving
-      const convertPathToUrl = (filePath: string) => {
-        if (!filePath) return "";
-        if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-          return filePath; // Already a URL
-        }
-        // Extract filename from absolute path and create API URL
-        const filename = filePath.split('/').pop() || '';
-        return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(filename)}`;
-      };
-
       setPaths({
         resumePath: convertPathToUrl(result.resume_path),
         coverLetterPath: convertPathToUrl(result.cover_letter_path)
@@ -198,17 +240,6 @@ export function useGenerateForm() {
       
       const result = await response.json();
 
-      // Convert absolute file paths to proper URLs for serving
-      const convertPathToUrl = (filePath: string) => {
-        if (!filePath) return "";
-        if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-          return filePath; // Already a URL
-        }
-        // Extract filename from absolute path and create API URL
-        const filename = filePath.split('/').pop() || '';
-        return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(filename)}`;
-      };
-
       setPaths({
         resumePath: convertPathToUrl(result.resume_path),
         coverLetterPath: convertPathToUrl(result.cover_letter_path)
@@ -248,17 +279,6 @@ export function useGenerateForm() {
       }
       
       const result = await response.json();
-
-      // Convert absolute file paths to proper URLs for serving
-      const convertPathToUrl = (filePath: string) => {
-        if (!filePath) return "";
-        if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-          return filePath; // Already a URL
-        }
-        // Extract filename from absolute path and create API URL
-        const filename = filePath.split('/').pop() || '';
-        return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(filename)}`;
-      };
 
       setPaths({
         resumePath: convertPathToUrl(result["resume_path"]),

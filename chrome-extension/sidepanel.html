@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aria</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="sidepanel-container">
+    <!-- Extension Header -->
+    <div class="extension-header">
+      <div class="header-controls">
+        <div class="logo-section">
+          <img src="icons/agent.png" alt="Aria" class="logo">
+          <div class="header-info">
+            <h1>Aria Extension</h1>
+            <div class="status-indicator" id="statusIndicator">
+              <span class="status-dot"></span>
+              <span class="status-text">Ready</span>
+            </div>
+          </div>
+        </div>
+        <div class="quick-actions">
+          <button id="extractBtn" class="header-btn" disabled title="Extract job data from current page">
+            <span class="btn-icon">📋</span>
+          </button>
+          <button id="refreshBtn" class="header-btn" title="Refresh data">
+            <span class="btn-icon">�</span>
+          </button>
+          <button id="settingsBtn" class="header-btn" title="Toggle settings">
+            <span class="btn-icon">⚙️</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Job Detection Banner -->
+      <div class="job-banner" id="jobBanner" style="display: none;">
+        <div class="job-info">
+          <span class="job-title" id="jobTitle">Software Engineer</span>
+          <span class="job-company" id="jobCompany">at Google</span>
+        </div>
+        <button id="useJobBtn" class="use-job-btn">Use This Job</button>
+      </div>
+    </div>
+
+    <!-- Settings Panel (Collapsible) -->
+    <div class="settings-panel" id="settingsPanel" style="display: none;">
+      <div class="settings-content">
+        <div class="setting-item">
+          <label class="switch">
+            <input type="checkbox" id="autoExtractToggle">
+            <span class="slider"></span>
+          </label>
+          <span class="setting-label">Auto-extract job data</span>
+        </div>
+        
+        <div class="url-setting">
+          <label for="ariaUrl">Aria URL:</label>
+          <input type="url" id="ariaUrl" class="url-input" value="http://localhost:3000">
+        </div>
+      </div>
+    </div>
+
+    <!-- React App Container -->
+    <div class="react-app-container">
+      <iframe 
+        id="ariaFrame" 
+        src="http://localhost:3000?embedded=true&source=extension" 
+        frameborder="0"
+        allow="clipboard-read; clipboard-write"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+      >
+      </iframe>
+      
+      <!-- Loading Overlay -->
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+          <div class="loading-spinner"></div>
+          <p>Loading Aria...</p>
+          <small>Make sure Aria is running on <span id="ariaUrlDisplay">http://localhost:3000</span></small>
+        </div>
+      </div>
+      
+      <!-- Connection Error -->
+      <div class="error-overlay" id="errorOverlay" style="display: none;">
+        <div class="error-content">
+          <div class="error-icon">⚠️</div>
+          <h3>Connection Error</h3>
+          <p>Cannot connect to Aria app</p>
+          <div class="error-actions">
+            <button id="retryBtn" class="retry-btn">Retry</button>
+            <button id="openExternalBtn" class="external-btn">Open in Browser</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="sidepanel-react.js"></script>
+</body>
+</html>

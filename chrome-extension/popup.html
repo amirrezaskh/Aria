@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aria</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-section">
+        <img src="icons/icon48.png" alt="Aria" class="logo">
+        <h1>Aria</h1>
+      </div>
+      <div class="status-indicator" id="statusIndicator">
+        <span class="status-dot"></span>
+        <span class="status-text">Ready</span>
+      </div>
+    </div>
+
+    <!-- Job Detection Section -->
+    <div class="section" id="jobDetectionSection">
+      <h2>Job Page Detected</h2>
+      <div class="job-info" id="jobInfo" style="display: none;">
+        <div class="job-item">
+          <strong>Position:</strong>
+          <span id="jobTitle">-</span>
+        </div>
+        <div class="job-item">
+          <strong>Company:</strong>
+          <span id="jobCompany">-</span>
+        </div>
+        <div class="job-item">
+          <strong>Site:</strong>
+          <span id="jobSite">-</span>
+        </div>
+      </div>
+      
+      <div class="no-job-message" id="noJobMessage">
+        Navigate to a job posting on LinkedIn, Indeed, or Wellfound to extract job data.
+      </div>
+    </div>
+
+    <!-- Actions Section -->
+    <div class="section">
+      <h2>Actions</h2>
+      <div class="action-buttons">
+        <button id="extractBtn" class="btn btn-primary" disabled>
+          <span class="btn-icon">📋</span>
+          Extract Job Data
+        </button>
+        
+        <button id="testConnectionBtn" class="btn btn-outline">
+          <span class="btn-icon">🔧</span>
+          Test Connection
+        </button>
+        
+        <button id="openAriaBtn" class="btn btn-secondary">
+          <span class="btn-icon">🚀</span>
+          Open Aria
+        </button>
+        
+        <button id="manualExtractBtn" class="btn btn-outline">
+          <span class="btn-icon">✍️</span>
+          Manual Extract
+        </button>
+      </div>
+    </div>
+
+    <!-- Settings Section -->
+    <div class="section">
+      <h2>Settings</h2>
+      <div class="settings-grid">
+        <div class="setting-item">
+          <label class="switch">
+            <input type="checkbox" id="autoExtractToggle">
+            <span class="slider"></span>
+          </label>
+          <span class="setting-label">Auto-extract on page load</span>
+        </div>
+        
+        <div class="setting-item">
+          <label class="switch">
+            <input type="checkbox" id="autoOpenToggle">
+            <span class="slider"></span>
+          </label>
+          <span class="setting-label">Auto-open Aria</span>
+        </div>
+        
+        <div class="setting-item">
+          <label class="switch">
+            <input type="checkbox" id="notificationsToggle">
+            <span class="slider"></span>
+          </label>
+          <span class="setting-label">Show notifications</span>
+        </div>
+      </div>
+      
+      <div class="url-settings">
+        <div class="input-group">
+          <label for="ariaUrl">Aria Frontend URL:</label>
+          <input type="url" id="ariaUrl" class="url-input" placeholder="http://localhost:3000">
+        </div>
+        
+        <div class="input-group">
+          <label for="apiUrl">Aria API URL:</label>
+          <input type="url" id="apiUrl" class="url-input" placeholder="http://localhost:8080">
+        </div>
+      </div>
+      
+      <button id="saveSettingsBtn" class="btn btn-outline save-btn">
+        Save Settings
+      </button>
+    </div>
+
+    <!-- Recent Extractions -->
+    <div class="section">
+      <h2>Recent Extractions</h2>
+      <div id="recentExtractions" class="recent-list">
+        <div class="empty-state">No recent extractions</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-links">
+        <a href="#" id="viewDocsLink">Documentation</a>
+        <a href="#" id="reportIssueLink">Report Issue</a>
+      </div>
+      <div class="version">v1.0.0</div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

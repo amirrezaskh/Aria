@@ -2,12 +2,16 @@ import {
   Paper,
   Stepper,
   Step,
-  StepLabel
+  StepLabel,
+  useTheme,
+  Box
 } from "@mui/material";
 import type { ProgressStepperProps } from "../types";
 import { STEPPER_STEPS } from "../constants";
 
 export default function ProgressStepper({ currentStep }: ProgressStepperProps) {
+  const theme = useTheme();
+  
   const getActiveStep = () => {
     switch (currentStep) {
       case 'input': return 0;
@@ -25,14 +29,46 @@ export default function ProgressStepper({ currentStep }: ProgressStepperProps) {
   }
 
   return (
-    <Paper elevation={1} sx={{ p: 2, mb: 4 }}>
-      <Stepper activeStep={getActiveStep()} alternativeLabel>
-        {STEPPER_STEPS.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-    </Paper>
+    <Box sx={{ mb: 4 }}>
+      <Paper 
+        elevation={0} 
+        sx={{ 
+          p: 3,
+          borderRadius: 3,
+          border: `1px solid ${theme.palette.divider}`,
+          background: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(5px)'
+        }}
+      >
+        <Stepper 
+          activeStep={getActiveStep()} 
+          alternativeLabel
+          sx={{
+            '& .MuiStepLabel-root .Mui-completed': {
+              color: theme.palette.success.main,
+            },
+            '& .MuiStepLabel-root .Mui-active': {
+              color: theme.palette.primary.main,
+            },
+            '& .MuiStepLabel-label': {
+              fontSize: '0.875rem',
+              fontWeight: 500,
+            },
+            '& .MuiStepLabel-label.Mui-active': {
+              fontWeight: 600,
+            },
+            '& .MuiStepConnector-line': {
+              borderTopWidth: 2,
+            }
+          }}
+        >
+          {STEPPER_STEPS.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Paper>
+    </Box>
   );
 }
