@@ -17,6 +17,7 @@ export default function GenerateForm() {
     formData,
     resumeStrategy,
     selectedTemplate,
+    paths,
     similarJobs,
     isLoading,
     isLoadingSimilarJobs,
@@ -85,6 +86,8 @@ export default function GenerateForm() {
       case 'results':
         return (
           <Results
+            formData={formData}
+            paths={paths}
             onDownload={handleDownload}
             onCreateAnother={handleCreateAnother}
           />

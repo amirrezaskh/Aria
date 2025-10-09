@@ -113,9 +113,20 @@ export function useGenerateForm() {
       
       const result = await response.json();
 
+      // Convert absolute file paths to proper URLs for serving
+      const convertPathToUrl = (filePath: string) => {
+        if (!filePath) return "";
+        if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+          return filePath; // Already a URL
+        }
+        // Extract filename from absolute path and create API URL
+        const filename = filePath.split('/').pop() || '';
+        return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(filename)}`;
+      };
+
       setPaths({
-        resumePath: result.resume_path,
-        coverLetterPath: result.cover_letter_path
+        resumePath: convertPathToUrl(result.resume_path),
+        coverLetterPath: convertPathToUrl(result.cover_letter_path)
       });
       
       setCurrentStep('results');
@@ -187,9 +198,20 @@ export function useGenerateForm() {
       
       const result = await response.json();
 
+      // Convert absolute file paths to proper URLs for serving
+      const convertPathToUrl = (filePath: string) => {
+        if (!filePath) return "";
+        if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+          return filePath; // Already a URL
+        }
+        // Extract filename from absolute path and create API URL
+        const filename = filePath.split('/').pop() || '';
+        return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(filename)}`;
+      };
+
       setPaths({
-        resumePath: result.resume_path,
-        coverLetterPath: result.cover_letter_path
+        resumePath: convertPathToUrl(result.resume_path),
+        coverLetterPath: convertPathToUrl(result.cover_letter_path)
       });
       
       setCurrentStep('results');
@@ -227,9 +249,20 @@ export function useGenerateForm() {
       
       const result = await response.json();
 
+      // Convert absolute file paths to proper URLs for serving
+      const convertPathToUrl = (filePath: string) => {
+        if (!filePath) return "";
+        if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
+          return filePath; // Already a URL
+        }
+        // Extract filename from absolute path and create API URL
+        const filename = filePath.split('/').pop() || '';
+        return `${API_ENDPOINTS.GENERATED_RESUMES}/${encodeURIComponent(filename)}`;
+      };
+
       setPaths({
-        resumePath: result["resume_path"],
-        coverLetterPath: result["cover_letter_path"]
+        resumePath: convertPathToUrl(result["resume_path"]),
+        coverLetterPath: convertPathToUrl(result["cover_letter_path"])
       });
       console.log('Generation result:', result);
       
@@ -243,16 +276,62 @@ export function useGenerateForm() {
     }
   };
 
-  const handleDownload = (type: 'resume' | 'coverLetter') => {
-    // TODO: Implement actual download logic
-    console.log(`Downloading ${type}...`);
-    
-    // For now, create a dummy download
-    const link = document.createElement('a');
-    link.href = paths[`${type}Path`];
-    console.log(link.href);
-    link.download = `${formData.companyName}_${formData.positionTitle}_${type}.pdf`;
-    link.click();
+  const handleDownload = async (type: 'resume' | 'coverLetter') => {
+    try {
+      const path = type === 'resume' ? paths.resumePath : paths.coverLetterPath;
+      
+      if (!path) {
+        console.error(`No ${type} path available for download`);
+        setError(`${type} file not available for download`);
+        return;
+      }
+
+      console.log(`Downloading ${type} from:`, path);
+
+      // Create a descriptive filename
+      const timestamp = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+      const sanitizedCompany = formData.companyName.replace(/[^a-zA-Z0-9]/g, '_');
+      const sanitizedPosition = formData.positionTitle.replace(/[^a-zA-Z0-9]/g, '_');
+      const filename = `${sanitizedCompany}_${sanitizedPosition}_${type}_${timestamp}.pdf`;
+
+      // For URLs (which is what our API returns), fetch and download
+      if (path.startsWith('http://') || path.startsWith('https://')) {
+        const response = await fetch(path);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${type}: ${response.statusText}`);
+        }
+        
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up the object URL
+        window.URL.revokeObjectURL(url);
+      } else {
+        // For local file paths (fallback)
+        const link = document.createElement('a');
+        link.href = path;
+        link.download = filename;
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      console.log(`${type} download initiated successfully`);
+    } catch (error) {
+      console.error(`Error downloading ${type}:`, error);
+      setError(`Failed to download ${type}. Please try again.`);
+    }
   };
 
   const handleBack = () => {

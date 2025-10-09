@@ -2,15 +2,28 @@ import {
   Box, 
   Typography, 
   Button, 
-  Stack
+  Stack,
+  Alert
 } from "@mui/material";
-import { Download } from "@mui/icons-material";
+import { Download, Visibility } from "@mui/icons-material";
 import type { ResultsProps } from "../types";
 
 export default function Results({ 
+  formData,
+  paths,
   onDownload, 
   onCreateAnother 
-}: Pick<ResultsProps, 'onDownload' | 'onCreateAnother'>) {
+}: ResultsProps) {
+  const handlePreview = (type: 'resume' | 'coverLetter') => {
+    const path = type === 'resume' ? paths.resumePath : paths.coverLetterPath;
+    if (path) {
+      window.open(path, '_blank');
+    }
+  };
+
+  const isResumeAvailable = Boolean(paths.resumePath);
+  const isCoverLetterAvailable = Boolean(paths.coverLetterPath);
+
   return (
     <Stack spacing={3}>
       <Typography variant="h5" align="center" gutterBottom color="success.main">
@@ -18,8 +31,17 @@ export default function Results({
       </Typography>
       
       <Typography variant="body1" color="text.secondary" align="center">
-        Your personalized resume and cover letter are ready for download.
+        Your personalized resume and cover letter for{' '}
+        <strong>{formData.positionTitle}</strong> at{' '}
+        <strong>{formData.companyName}</strong> are ready for download.
       </Typography>
+
+      {/* Show warning if files are not available */}
+      {(!isResumeAvailable || !isCoverLetterAvailable) && (
+        <Alert severity="warning">
+          Some documents may not be available. Please try generating again if needed.
+        </Alert>
+      )}
 
       <Box sx={{ 
         display: 'flex', 
@@ -27,25 +49,53 @@ export default function Results({
         justifyContent: 'center',
         flexDirection: { xs: 'column', sm: 'row' }
       }}>
-        <Button
-          variant="contained"
-          size="large"
-          startIcon={<Download />}
-          onClick={() => onDownload('resume')}
-          sx={{ minWidth: 200 }}
-        >
-          Download Resume
-        </Button>
+        <Stack spacing={1} sx={{ minWidth: 200 }}>
+          <Button
+            variant="contained"
+            size="large"
+            startIcon={<Download />}
+            onClick={() => onDownload('resume')}
+            disabled={!isResumeAvailable}
+            fullWidth
+          >
+            Download Resume
+          </Button>
+          {isResumeAvailable && (
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<Visibility />}
+              onClick={() => handlePreview('resume')}
+              fullWidth
+            >
+              Preview Resume
+            </Button>
+          )}
+        </Stack>
         
-        <Button
-          variant="outlined"
-          size="large"
-          startIcon={<Download />}
-          onClick={() => onDownload('coverLetter')}
-          sx={{ minWidth: 200 }}
-        >
-          Download Cover Letter
-        </Button>
+        <Stack spacing={1} sx={{ minWidth: 200 }}>
+          <Button
+            variant="outlined"
+            size="large"
+            startIcon={<Download />}
+            onClick={() => onDownload('coverLetter')}
+            disabled={!isCoverLetterAvailable}
+            fullWidth
+          >
+            Download Cover Letter
+          </Button>
+          {isCoverLetterAvailable && (
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<Visibility />}
+              onClick={() => handlePreview('coverLetter')}
+              fullWidth
+            >
+              Preview Cover Letter
+            </Button>
+          )}
+        </Stack>
       </Box>
 
       <Button
