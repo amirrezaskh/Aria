@@ -1,7 +1,8 @@
-<h2 align="center" style="display: inline-block; border-bottom: 2px solid #ccc; padding-bottom: 6px;">
-  <img src="frontend/public/agent.png" alt="Aria Logo" width="60" height="60" style="vertical-align: middle; margin-right: 10px;">
-  Aria – AI-Powered Resume & Cover Letter Generation Platform
-</h2>
+<p align="center">
+  <img src="frontend/public/agent.png" alt="Aria Logo" width="60" height="60" style="vertical-align:middle; margin-right:10px;">
+  <strong><span style="font-size:1.5em;">Aria – AI-Powered Resume & Cover Letter Generation Platform</span></strong>
+</p>
+<hr style="width:80%; border:1px solid #ccc;">
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![React 19](https://img.shields.io/badge/react-19.1.1-blue.svg)](https://reactjs.org/)
