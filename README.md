@@ -107,7 +107,7 @@ Aria/
 │   ├── setup_db.py               # Database initialization
 │   └── requirements.txt           # Python dependencies
 │
-├── � chrome-extension/           # Chrome Browser Extension
+├── 🧩 chrome-extension/           # Chrome Browser Extension
 │   ├── manifest.json             # Extension configuration (Manifest V3)
 │   ├── background.js             # Service worker for extension
 │   ├── content.js                # Content script for job sites
