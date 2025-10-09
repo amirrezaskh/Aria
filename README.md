@@ -183,31 +183,6 @@ graph TB
     GEN --> TMPL
 ```
 
-### Workflow Architecture
-
-```mermaid
-graph LR
-    subgraph "Resume + Cover Letter Workflow"
-        A[Job Input] --> B[Generate Experiences]
-        B --> C[Generate Skills]
-        C --> D[Select Projects]
-        D --> E[Generate Project Summaries]
-        E --> F[Generate Highlights]
-        F --> G[Save Resume]
-        G --> H[Retrieve Context]
-        H --> I[Generate Cover Letter]
-        I --> J[Save Cover Letter]
-        J --> K[Save Job Application]
-    end
-    
-    subgraph "Cover Letter Only Workflow"
-        L[Job Input + Resume] --> M[Retrieve Context]
-        M --> N[Generate Cover Letter]
-        N --> O[Save Cover Letter]
-        O --> P[Save Job Application]
-    end
-```
-
 ## 🚀 Quick Start
 
 ### Prerequisites
