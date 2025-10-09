@@ -19,11 +19,6 @@ Aria is an intelligent AI-powered platform that generates personalized resumes a
 - **Semantic Understanding**: Analyzes job descriptions for better content matching
 - **Duplicate Prevention**: Prevents duplicate applications to the same company-position combinations
 
-### 🎨 Professional Templates
-- **Multiple Formats**: ML Engineering, Data Science, Software Engineering, and General templates
-- **PDF Preview**: Real-time preview of generated documents
-- **Customizable Layouts**: Professional, clean designs optimized for ATS systems
-
 ### 🔄 Workflow Intelligence
 - **Selective Generation**: Smart routing between full generation vs. cover letter-only workflows
 - **Template Reuse**: Quickly generate cover letters using existing resume templates
