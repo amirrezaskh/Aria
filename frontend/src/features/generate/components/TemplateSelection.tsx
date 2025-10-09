@@ -5,15 +5,18 @@ import {
   Stack,
   Card,
   CardContent,
+  CardActions,
   Chip,
   RadioGroup,
   FormControlLabel,
   Radio,
-  FormControl
+  FormControl,
+  IconButton,
+  Tooltip
 } from "@mui/material";
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { ArrowBack, ArrowForward, Visibility } from "@mui/icons-material";
 import type { TemplateSelectionProps, TemplateType } from "../types";
-import { RESUME_TEMPLATES } from "../constants";
+import { RESUME_TEMPLATES, RESUME_PREVIEW_MAPPING } from "../constants";
 
 export default function TemplateSelection({ 
   selectedTemplate, 
@@ -21,6 +24,14 @@ export default function TemplateSelection({
   onGenerate, 
   onBack 
 }: TemplateSelectionProps) {
+  
+  const handlePreviewResume = (templateId: TemplateType) => {
+    const resumeUrl = RESUME_PREVIEW_MAPPING[templateId];
+    if (resumeUrl) {
+      // Open the resume PDF in a new window/tab
+      window.open(resumeUrl, '_blank');
+    }
+  };
   return (
     <Stack spacing={3}>
       <Typography variant="h5" align="center" gutterBottom>
@@ -73,6 +84,20 @@ export default function TemplateSelection({
                       sx={{ margin: 0, width: '100%' }}
                     />
                   </CardContent>
+                  <CardActions sx={{ justifyContent: 'flex-end', pt: 0 }}>
+                    <Tooltip title="Preview Resume Template">
+                      <IconButton 
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent card selection when clicking preview
+                          handlePreviewResume(template.id);
+                        }}
+                        size="small"
+                        color="primary"
+                      >
+                        <Visibility />
+                      </IconButton>
+                    </Tooltip>
+                  </CardActions>
                 </Card>
               );
             })}

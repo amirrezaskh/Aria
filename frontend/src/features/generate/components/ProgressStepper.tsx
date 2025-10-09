@@ -12,9 +12,10 @@ export default function ProgressStepper({ currentStep }: ProgressStepperProps) {
     switch (currentStep) {
       case 'input': return 0;
       case 'personalization': return 1;
-      case 'strategy': return 1;
-      case 'generating': return 2;
-      case 'results': return 3;
+      case 'strategy': return 1; // Template selection is still part of personalization
+      case 'similarity': return 2;
+      case 'generating': return 3;
+      case 'results': return 4;
       default: return 0;
     }
   };

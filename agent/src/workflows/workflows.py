@@ -37,6 +37,7 @@ class Worlflows:
         workflow.add_node("generate_cover_letter", Nodes.generate_cover_letter_node)
         workflow.add_node("save_cover_letter", Nodes.save_cover_letter_node)
         workflow.add_node("add_cover_letter_context", Nodes.add_cover_letter_context_node)
+        workflow.add_node("save_job_application", Nodes.save_job_application_node)
 
         workflow.set_entry_point("generate_experiences")
         workflow.add_edge("generate_experiences", "generate_skills")
@@ -48,7 +49,8 @@ class Worlflows:
         workflow.add_edge("retrieve_context", "generate_cover_letter")
         workflow.add_edge("generate_cover_letter", "save_cover_letter")
         workflow.add_edge("save_cover_letter", "add_cover_letter_context")
-        workflow.set_finish_point("add_cover_letter_context")
+        workflow.add_edge("add_cover_letter_context", "save_job_application")
+        workflow.set_finish_point("save_job_application")
 
         return workflow.compile()
     
@@ -60,12 +62,14 @@ class Worlflows:
         workflow.add_node("generate_only_cover_letter", Nodes.generate_only_cover_letter_node)
         workflow.add_node("save_cover_letter", Nodes.save_cover_letter_node)
         workflow.add_node("add_cover_letter_context", Nodes.add_cover_letter_context_node)
-
+        workflow.add_node("save_job_application", Nodes.save_job_application_node)
+        
         workflow.set_entry_point("load_resume")
         workflow.add_edge("load_resume", "retrieve_context_only_cover_letter")
         workflow.add_edge("retrieve_context_only_cover_letter", "generate_only_cover_letter")
         workflow.add_edge("generate_only_cover_letter", "save_cover_letter")
         workflow.add_edge("save_cover_letter", "add_cover_letter_context")
-        workflow.set_finish_point("add_cover_letter_context")
+        workflow.add_edge("add_cover_letter_context", "save_job_application")
+        workflow.set_finish_point("save_job_application")
 
         return workflow.compile()

@@ -4,6 +4,25 @@ export interface FormData {
   positionTitle: string;
 }
 
+export interface SimilarJob {
+  id: number;
+  company_name: string;
+  position_title: string;
+  job_description: string;
+  resume_generated: boolean;
+  created_at: string;
+  similarity_score: number;
+  resume_path: string;
+}
+
+export interface SimilarJobsResponse {
+  status: string;
+  similar_jobs: SimilarJob[];
+  count: number;
+  threshold: number;
+  method: string;
+}
+
 export type ResumeStrategy = 'generate' | 'template';
 export type TemplateType = 'ml-engineering' | 'data-science' | 'software-engineering' | 'overall';
 
@@ -15,7 +34,7 @@ export interface ResumeTemplate {
   keywords: string[];
 }
 
-export type Step = 'input' | 'personalization' | 'strategy' | 'generating' | 'results';
+export type Step = 'input' | 'personalization' | 'similarity' | 'strategy' | 'generating' | 'results';
 
 export interface GeneratedPaths {
   resumePath: string;

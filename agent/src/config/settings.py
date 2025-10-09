@@ -14,6 +14,18 @@ class Settings(BaseSettings):
     openai_model: str = Field("gpt-4o", env="OPENAI_MODEL") 
     openai_embedding_model: str = Field("text-embedding-3-large", env="OPENAI_EMBEDDING_MODEL")
     
+    # Database Configuration
+    db_host: str = Field("localhost", env="DB_HOST")
+    db_port: str = Field("5432", env="DB_PORT")
+    db_name: str = Field("aria", env="DB_NAME")
+    db_user: str = Field(..., env="DB_USER")
+    db_password: str = Field(..., env="DB_PASSWORD")
+    database_url: Optional[str] = Field(None, env="DATABASE_URL")
+    
+    # Flask Configuration
+    flask_env: str = Field("development", env="FLASK_ENV")
+    flask_debug: bool = Field(True, env="FLASK_DEBUG")
+    
     # TODO: We can probably delete this.
     # LangChain Configuration
     langchain_tracing_v2: bool = Field(False, env="LANGCHAIN_TRACING_V2")

@@ -32,8 +32,20 @@ export const RESUME_TEMPLATES: ResumeTemplate[] = [
   }
 ];
 
-export const STEPPER_STEPS = ['Job Details', 'Personalization', 'Generation', 'Results'];
+export const STEPPER_STEPS = ['Job Details', 'Personalization', 'Similar Jobs', 'Generation', 'Results'];
 
 export const API_ENDPOINTS = {
-  GENERATE: 'http://localhost:8080/api/generate/'
+  GENERATE: 'http://localhost:8080/api/generate/',
+  GENERATE_COVER_LETTER: 'http://localhost:8080/api/generate/cover-letter/',
+  SIMILAR_JOBS: 'http://localhost:8080/api/jobs/similar',
+  RESUME_PREVIEW: 'http://localhost:8080/api/resumes/preview',
+  GENERATED_RESUMES: 'http://localhost:8080/api/resumes/generated'
 } as const;
+
+// Resume preview URL mapping
+export const RESUME_PREVIEW_MAPPING: Record<string, string> = {
+  'ml-engineering': `${API_ENDPOINTS.RESUME_PREVIEW}/ml-engineering`,
+  'data-science': `${API_ENDPOINTS.RESUME_PREVIEW}/data-science`,
+  'software-engineering': `${API_ENDPOINTS.RESUME_PREVIEW}/software-engineering`,
+  'overall': `${API_ENDPOINTS.RESUME_PREVIEW}/overall`
+};

@@ -7,6 +7,7 @@ import {
   Results,
   ProgressStepper
 } from "./components";
+import { SimilarJobsDisplay } from "./components/SimilarJobsDisplay";
 import { useGenerateForm } from "./hooks/useGenerateForm";
 
 export default function GenerateForm() {
@@ -16,15 +17,20 @@ export default function GenerateForm() {
     formData,
     resumeStrategy,
     selectedTemplate,
+    similarJobs,
     isLoading,
+    isLoadingSimilarJobs,
     error,
     
     // Handlers
     handleInputChange,
     handleStartPersonalization,
+    handleUseSimilarResume,
+    handleViewResume,
+    handleProceedWithNew,
     handleStrategySelection,
     handleTemplateSelection,
-    handleGenerate,
+    handleGenerateWithTemplate,
     handleDownload,
     handleBack,
     handleCreateAnother
@@ -41,6 +47,17 @@ export default function GenerateForm() {
             onStartPersonalization={handleStartPersonalization}
           />
         );
+      case 'similarity':
+        return (
+          <SimilarJobsDisplay
+            similarJobs={similarJobs}
+            isLoading={isLoadingSimilarJobs}
+            onUseSimilarResume={handleUseSimilarResume}
+            onViewResume={handleViewResume}
+            onProceedWithNew={handleProceedWithNew}
+            onBack={handleBack}
+          />
+        );
       case 'personalization':
         return (
           <PersonalizationChoice
@@ -53,7 +70,7 @@ export default function GenerateForm() {
           <TemplateSelection
             selectedTemplate={selectedTemplate}
             onTemplateSelection={handleTemplateSelection}
-            onGenerate={handleGenerate}
+            onGenerate={handleGenerateWithTemplate}
             onBack={handleBack}
           />
         );

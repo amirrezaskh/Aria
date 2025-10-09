@@ -4,6 +4,7 @@ from ..format.latex_compiler import LatexCompiler
 from ..config.settings import settings
 from langchain.docstore.document import Document
 from pypdf import PdfReader
+from ..database import db
 
 class Nodes:
     @staticmethod
@@ -158,7 +159,7 @@ class Nodes:
 
     @staticmethod
     def load_resume_node(state: CoverLetterState):
-        reader = PdfReader("./output/resumes/Apple/AI Engineer.pdf")
+        reader = PdfReader(state["resume_pdf_file"])
         resume = ""
         for page in reader.pages:
             resume += page.extract_text()
@@ -193,4 +194,24 @@ class Nodes:
             "context": state["context"]
         })
         state["cover_letter"] = result["cover_letter_tex"]
+        return state
+    
+    @staticmethod
+    def save_job_application_node(state: CoverLetterState | ResumeState):
+        """Save job application to database with vector embeddings"""
+        print("💾 Saving job application to database...")
+        
+        company_name = state.get("company", "")
+        position_title = state.get("position", "")
+        job_posting = state.get("job_posting", "")
+        
+        # Check if this is a ResumeState by looking for keys unique to ResumeState
+        resume_generated = "resume_latex" in state or "experiences" in state
+        
+        db.save_job_application(
+            company_name=company_name,
+            position_title=position_title,
+            job_description=job_posting,
+            resume_generated=resume_generated
+        )
         return state
