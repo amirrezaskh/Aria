@@ -7,9 +7,9 @@ class PromptTemplates:
     """Container for all prompt templates used in the application"""
     
     EXPERIENCE_PROMPT = PromptTemplate.from_template("""
-    You are an expert resume writer specializing in tailoring professional experiences to specific job requirements.
+    You are an expert resume writer specializing in selecting and highlighting the most relevant professional experiences for specific job requirements.
     
-    Your task is to analyze the provided job posting and candidate experiences, then generate LaTeX-formatted resume entries that highlight the most relevant skills, achievements, and experiences for the target position.
+    Your task is to analyze the job posting and candidate experiences, then select the best-aligned experiences and highlight specific achievements that demonstrate the candidate's ability to perform the requested job.
 
     JOB POSTING:
     {job}
@@ -18,40 +18,43 @@ class PromptTemplates:
     {experiences}
 
     INSTRUCTIONS:
-    1. Analyze the job posting to identify key requirements, skills, technologies, and qualifications
-    2. Select the 3-4 most relevant experiences from the candidate's background
-    3. For each selected experience, generate a LaTeX resume entry following this EXACT format:
+    1. Analyze the job posting to identify key requirements, skills, technologies, and qualifications.
+    2. From the candidate's experiences, select 2-3 experiences that are most relevant to the job posting.
+    3. For each selected experience, choose exactly 3 specific highlights/achievements from that experience that best demonstrate the candidate's ability to perform the requested job.
+    4. Generate LaTeX resume entries following this EXACT format:
 
     \\resumeSubheading
         {{Organization Name}}{{Start Date – End Date}}
         {{Job Title}}{{Location}}
         \\resumeItemListStart
-            \\resumeItem{{Achievement/responsibility highlighting relevant skills with \\textbf{{bold keywords}}}}
-            \\resumeItem{{Achievement/responsibility highlighting relevant skills with \\textbf{{bold keywords}}}}
-            \\resumeItem{{Achievement/responsibility highlighting relevant skills with \\textbf{{bold keywords}}}}
-            \\resumeItem{{Achievement/responsibility highlighting relevant skills with \\textbf{{bold keywords}}}}
-            \\resumeItem{{Achievement/responsibility highlighting relevant skills with \\textbf{{bold keywords}}}}
+            \\resumeItem{{Specific achievement/highlight demonstrating job-relevant skills with \\textbf{{bold keywords}}}}
+            \\resumeItem{{Specific achievement/highlight demonstrating job-relevant skills with \\textbf{{bold keywords}}}}
+            \\resumeItem{{Specific achievement/highlight demonstrating job-relevant skills with \\textbf{{bold keywords}}}}
         \\resumeItemListEnd
 
+    SELECTION CRITERIA:
+    1. Direct alignment with job requirements and responsibilities
+    2. Technologies and skills mentioned in the job posting
+    3. Relevant industry experience and domain knowledge
+    4. Quantifiable achievements and measurable impact
+    5. Leadership, project management, or technical depth as required by the job
+
     FORMATTING GUIDELINES:
-    - Use \\textbf{{}} to bold technical skills, technologies, methodologies, and key achievements mentioned in the job posting
-    - Start each \\resumeItem with strong action verbs (Developed, Implemented, Designed, Led, Accelerated, etc.)
-    - Quantify achievements with numbers/percentages when available (use \\% for percentages in LaTeX)
-    - Tailor the language to match the job posting's terminology
-    - Highlight transferable skills even if from different domains
-    - Focus on impact and results, not just responsibilities
-    - Ensure each experience shows progression and growth
-    - Maximum 5 resume items per experience
+    - Use \\textbf{{}} to bold technical skills, technologies, and methodologies mentioned in the job posting
+    - Start each \\resumeItem with strong action verbs (Developed, Implemented, Designed, Led, Built, etc.)
+    - Include quantified results when available (use \\% for percentages in LaTeX)
+    - Focus on specific achievements that directly relate to job requirements
+    - Do not edit the text of resumeItem enteries at all.
+    - Each experience must have exactly 3 \\resumeItem entries
     - Order experiences by relevance to the job posting
 
-    PRIORITIZATION CRITERIA:
-    1. Direct skill/technology matches with job requirements
-    2. Relevant industry experience
-    3. Leadership and project management experience
-    4. Technical depth and complexity of work
-    5. Recent and duration of experience
+    REQUIREMENTS:
+    - Select minimum 2 and maximum 3 experiences
+    - Each selected experience must have exactly 3 highlights
+    - Focus on actual achievements from the candidate's background, not generic statements
+    - Ensure highlights demonstrate capability to perform the specific job being applied for
 
-    Generate the LaTeX resume entries for the most relevant experiences:
+    Generate the LaTeX resume entries for the selected experiences:
     """)
 
     SKILLS_PROMPT = PromptTemplate.from_template("""

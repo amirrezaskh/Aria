@@ -132,13 +132,10 @@ class LatexFormatter:
     \\resumeSubheading
     {{University of Manitoba}}{{Sep 2023 – Aug 2025}}
     {{Master of Science in Computer Science (GPA: 4.4 / 4.5)}}{{Winnipeg, Canada}}
-    \\resumeItemListStart
-        \\resumeItem{{\\textbf{{Relevant Coursework:}}  Security \\& Privacy, Deep Generative Modeling, Blockchain \\& Distributed Systems: A+}}
-    \\resumeItemListEnd
 
     \\resumeSubheading
     {{K.N. Toosi University of Technology}}{{Sep 2018 – Feb 2023}}
-    {{Bachelor of Science in Computer Engineering}}{{}}
+    {{Bachelor of Science in Computer Engineering}}{{CGPA: 88.7\\%}}
 
     \\resumeSubHeadingListEnd
 

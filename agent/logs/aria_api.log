@@ -3716,3 +3716,51 @@
 2025-10-24 22:18:03,816 [INFO] src.api.app: 🌐 GET /api/resumes/generated/resumes/Jerry/Software Engineer.pdf - 127.0.0.1
 2025-10-24 22:18:03,820 [INFO] src.api.app: ✅ GET /api/resumes/generated/resumes/Jerry/Software Engineer.pdf - 200 - 0.004s
 2025-10-24 22:18:03,822 [INFO] werkzeug: 127.0.0.1 - - [24/Oct/2025 22:18:03] "GET /api/resumes/generated/resumes%2FJerry%2FSoftware%20Engineer.pdf HTTP/1.1" 200 -
+2025-10-24 22:23:53,231 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:8080
+2025-10-24 22:23:53,231 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2025-10-24 22:24:20,883 [INFO] src.api.app: 🌐 OPTIONS /api/jobs/similar - 127.0.0.1
+2025-10-24 22:24:20,885 [INFO] src.api.app: ✅ OPTIONS /api/jobs/similar - 200 - 0.002s
+2025-10-24 22:24:20,888 [INFO] werkzeug: 127.0.0.1 - - [24/Oct/2025 22:24:20] "OPTIONS /api/jobs/similar HTTP/1.1" 200 -
+2025-10-24 22:24:20,892 [INFO] src.api.app: 🌐 POST /api/jobs/similar - 127.0.0.1
+2025-10-24 22:24:22,543 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-24 22:24:22,579 [INFO] src.api.app: ✅ POST /api/jobs/similar - 200 - 1.687s
+2025-10-24 22:24:22,580 [INFO] werkzeug: 127.0.0.1 - - [24/Oct/2025 22:24:22] "POST /api/jobs/similar HTTP/1.1" 200 -
+2025-10-24 22:24:25,696 [INFO] src.api.app: 🌐 OPTIONS /api/generate/ - 127.0.0.1
+2025-10-24 22:24:25,696 [INFO] src.api.app: ✅ OPTIONS /api/generate/ - 200 - 0.001s
+2025-10-24 22:24:25,697 [INFO] werkzeug: 127.0.0.1 - - [24/Oct/2025 22:24:25] "OPTIONS /api/generate/ HTTP/1.1" 200 -
+2025-10-24 22:24:25,699 [INFO] src.api.app: 🌐 POST /api/generate/ - 127.0.0.1
+2025-10-24 22:24:25,958 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-24 22:24:37,783 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:39,730 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:40,585 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:42,816 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:44,660 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:46,521 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:50,753 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:52,759 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:24:54,123 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-24 22:24:54,153 [INFO] httpx: HTTP Request: GET http://localhost:8000/api/v2/auth/identity "HTTP/1.1 200 OK"
+2025-10-24 22:24:54,154 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-24 22:24:54,164 [INFO] httpx: HTTP Request: GET http://localhost:8000/api/v2/tenants/default_tenant "HTTP/1.1 200 OK"
+2025-10-24 22:24:54,166 [INFO] httpx: HTTP Request: GET http://localhost:8000/api/v2/tenants/default_tenant/databases/default_database "HTTP/1.1 200 OK"
+2025-10-24 22:24:54,169 [INFO] httpx: HTTP Request: POST http://localhost:8000/api/v2/tenants/default_tenant/databases/default_database/collections "HTTP/1.1 200 OK"
+2025-10-24 22:24:54,791 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-24 22:24:54,848 [INFO] httpx: HTTP Request: POST http://localhost:8000/api/v2/tenants/default_tenant/databases/default_database/collections/87760c6d-637c-45d3-bbc4-b592e9ab0264/query "HTTP/1.1 200 OK"
+2025-10-24 22:25:02,480 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-24 22:25:03,809 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-24 22:25:03,822 [INFO] httpx: HTTP Request: GET http://localhost:8000/api/v2/auth/identity "HTTP/1.1 200 OK"
+2025-10-24 22:25:03,823 [INFO] chromadb.telemetry.product.posthog: Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-10-24 22:25:03,830 [INFO] httpx: HTTP Request: GET http://localhost:8000/api/v2/tenants/default_tenant "HTTP/1.1 200 OK"
+2025-10-24 22:25:03,831 [INFO] httpx: HTTP Request: GET http://localhost:8000/api/v2/tenants/default_tenant/databases/default_database "HTTP/1.1 200 OK"
+2025-10-24 22:25:03,833 [INFO] httpx: HTTP Request: POST http://localhost:8000/api/v2/tenants/default_tenant/databases/default_database/collections "HTTP/1.1 200 OK"
+2025-10-24 22:25:04,363 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-24 22:25:04,414 [INFO] httpx: HTTP Request: GET http://localhost:8000/api/v2/pre-flight-checks "HTTP/1.1 200 OK"
+2025-10-24 22:25:04,452 [INFO] httpx: HTTP Request: POST http://localhost:8000/api/v2/tenants/default_tenant/databases/default_database/collections/87760c6d-637c-45d3-bbc4-b592e9ab0264/upsert "HTTP/1.1 200 OK"
+2025-10-24 22:25:07,700 [INFO] httpx: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-24 22:25:07,718 [INFO] src.api.app: ✅ POST /api/generate/ - 200 - 42.018s
+2025-10-24 22:25:07,718 [WARNING] src.api.app: 🐌 Slow request: POST /api/generate/ took 42.018s
+2025-10-24 22:25:07,718 [INFO] werkzeug: 127.0.0.1 - - [24/Oct/2025 22:25:07] "POST /api/generate/ HTTP/1.1" 200 -
+2025-10-24 22:26:11,176 [INFO] src.api.app: 🌐 GET /api/resumes/generated/resumes/Jerry/Software Engineer.pdf - 127.0.0.1
+2025-10-24 22:26:11,180 [INFO] src.api.app: ✅ GET /api/resumes/generated/resumes/Jerry/Software Engineer.pdf - 200 - 0.004s
+2025-10-24 22:26:11,187 [INFO] werkzeug: 127.0.0.1 - - [24/Oct/2025 22:26:11] "GET /api/resumes/generated/resumes%2FJerry%2FSoftware%20Engineer.pdf HTTP/1.1" 200 -
