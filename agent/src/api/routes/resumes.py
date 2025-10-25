@@ -11,10 +11,10 @@ resumes_routes = Blueprint('resumes', __name__, url_prefix='/api/resumes')
 
 # Template mapping
 RESUME_TEMPLATES = {
-    'ml-engineering': 'data/resumes/Resume - ML - New.pdf',
-    'data-science': 'data/resumes/Resume - DS.pdf',
-    'software-engineering': 'data/resumes/Resume - SWE - New.pdf',
-    'overall': 'data/resumes/Resume - OverAll.pdf'
+    'ml-engineering': 'data/resumes/Amir - ML.pdf',
+    'data-science': 'data/resumes/Amir - DS.pdf',
+    'software-engineering': 'data/resumes/Amir - SWE.pdf',
+    'overall': 'data/resumes/Amir - OverAll.pdf'
 }
 
 

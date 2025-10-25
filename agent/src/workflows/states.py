@@ -18,7 +18,7 @@ class ResumeState(TypedDict):
     skills: str
     project_names: List[str]
     project_summaries: str
-    highlights: str
+    summary: str
     cover_letter: str
     
     # Final outputs

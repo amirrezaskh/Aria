@@ -61,25 +61,25 @@ class Nodes:
         return state
 
     @staticmethod
-    def generate_highlights_node(state: ResumeState) -> ResumeState:
-        print("📝 Generating highlights...")
+    def generate_summary_node(state: ResumeState) -> ResumeState:
+        print("📝 Generating summary...")
 
-        from ..chains.highlight_chain import HighlightChain
-        highlight_chain = HighlightChain()
-        result = highlight_chain.invoke({
+        from ..chains.summary_chain import SummaryChain
+        summary_chain = SummaryChain()
+        result = summary_chain.invoke({
             "job_posting": state["job_posting"],
             "experiences": state["experiences"],
             "skills": state["skills"],
             "project_summaries": state["project_summaries"]
         })
-        state["highlights"] = result["highlights"]
+        state["summary"] = result["summary"]
         return state
 
     @staticmethod
     def save_resume_node(state: ResumeState) -> ResumeState:
         print("✅ Saving resume...")
         resume_latex = LatexFormatter.format_resume(
-            highlights=state["highlights"],
+            summary=state["summary"],
             experiences=state["experiences"],
             skills=state["skills"],
             projects=state["project_summaries"]
@@ -117,7 +117,7 @@ class Nodes:
             "position": state["position"],
             "company": state["company"],
             "job_posting": state["job_posting"],
-            "highlights": state["highlights"],
+            "summary": state["summary"],
             "experiences": state["experiences"],
             "skills": state["skills"],
             "project_summaries": state["project_summaries"],

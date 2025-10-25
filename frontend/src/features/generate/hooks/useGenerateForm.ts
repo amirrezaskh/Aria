@@ -312,7 +312,7 @@ export function useGenerateForm(extensionJobData?: ExtensionJobData | null) {
       const timestamp = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
       const sanitizedCompany = formData.companyName.replace(/[^a-zA-Z0-9]/g, '_');
       const sanitizedPosition = formData.positionTitle.replace(/[^a-zA-Z0-9]/g, '_');
-      const filename = `${sanitizedCompany}_${sanitizedPosition}_${type}_${timestamp}.pdf`;
+      const filename = `Amir_${sanitizedCompany}_${sanitizedPosition}_${type}_${timestamp}.pdf`;
 
       // For URLs (which is what our API returns), fetch and download
       if (path.startsWith('http://') || path.startsWith('https://')) {

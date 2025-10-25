@@ -23,7 +23,7 @@ class CoverLetterChain(BaseChain):
                 "position": state["position"],
                 "company": state["company"],
                 "job_posting": state["job_posting"],
-                "resume_highlights": state["highlights"],
+                "resume_summary": state["summary"],
                 "resume_experiences": state["experiences"],
                 "resume_skills": state["skills"],
                 "resume_projects": state["project_summaries"],

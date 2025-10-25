@@ -2,7 +2,7 @@
 class LatexFormatter:
 
     @staticmethod
-    def format_resume(highlights : str = "", experiences : str = "", skills: str = "", projects: str = ""):
+    def format_resume(summary : str = "", experiences : str = "", skills: str = "", projects: str = ""):
         return f"""
 \\documentclass[letterpaper,11pt]{{article}}
 \\usepackage{{latexsym}}
@@ -21,6 +21,9 @@ class LatexFormatter:
 
 \\usepackage{{lmodern}}
 
+\\usepackage{{CormorantGaramond}}
+\\usepackage{{charter}}
+
 \\pagestyle{{fancy}}
 \\fancyhf{{}}
 \\fancyfoot{{}}
@@ -38,46 +41,46 @@ class LatexFormatter:
 \\setlength{{\\tabcolsep}}{{0in}}
 
 \\titleformat{{\\section}}{{
-  \\vspace{{-4pt}}\\scshape\\raggedright\\large
+  \\vspace{{-7pt}}\\scshape\\raggedright\\large
 }}{{}}{{0em}}{{}}[\\color{{black}}\\titlerule \\vspace{{-5pt}}]
 
 \\pdfgentounicode=1
 
 \\newcommand{{\\resumeItem}}[1]{{
   \\item\\small{{
-    #1 \\vspace{{0pt}}
+    #1 \\vspace{{-2pt}}
   }}
 }}
 
 \\newcommand{{\\resumeSubheading}}[4]{{
   \\vspace{{-2pt}}\\item
-    \\begin{{tabular*}}{{0.97\\textwidth}}[t]{{l@{{\\extracolsep{{\\fill}}}}r}}
+    \\begin{{tabular*}}{{1\\textwidth}}[t]{{l@{{\\extracolsep{{\\fill}}}}r}}
       \\textbf{{#1}} & #2 \\\\
-      \\textit{{\\small#3}} & \\textit{{\\small #4}} \\\\
-    \\end{{tabular*}}\\vspace{{-3pt}}
+      \\small#3 & \\small #4 \\\\
+    \\end{{tabular*}}\\vspace{{-4pt}}
 }}
 
 \\newcommand{{\\resumeSubSubheading}}[2]{{
     \\item
-    \\begin{{tabular*}}{{0.97\\textwidth}}{{l@{{\\extracolsep{{\\fill}}}}r}}
-      \\textit{{\\small#1}} & \\textit{{\\small #2}} \\\\
-    \\end{{tabular*}}\\vspace{{0pt}}
+    \\begin{{tabular*}}{{1\\textwidth}}{{l@{{\\extracolsep{{\\fill}}}}r}}
+      \\small#1 & \\small #2 \\\\
+    \\end{{tabular*}}\\vspace{{-7pt}}
 }}
 
 \\newcommand{{\\resumeProjectHeading}}[2]{{
     \\item
-    \\begin{{tabular*}}{{0.97\\textwidth}}{{l@{{\\extracolsep{{\\fill}}}}r}}
+    \\begin{{tabular*}}{{1\\textwidth}}{{l@{{\\extracolsep{{\\fill}}}}r}}
       \\small#1 & #2 \\\\
-    \\end{{tabular*}}\\vspace{{-3pt}}
+    \\end{{tabular*}}\\vspace{{-4pt}}
 }}
 
-\\newcommand{{\\resumeSubItem}}[1]{{\\resumeItem{{#1}}\\vspace{{0pt}}}}
+\\newcommand{{\\resumeSubItem}}[1]{{\\resumeItem{{#1}}\\vspace{{-4pt}}}}
 
 \\renewcommand\\labelitemii{{$\\vcenter{{\\hbox{{\\tiny$\\bullet$}}}}$}}
 
-\\newcommand{{\\resumeSubHeadingListStart}}{{\\begin{{itemize}}[leftmargin=0.15in, label={{}}]}}
+\\newcommand{{\\resumeSubHeadingListStart}}{{\\begin{{itemize}}[leftmargin=0in, label={{}}]}}
 \\newcommand{{\\resumeSubHeadingListEnd}}{{\\end{{itemize}}}}
-\\newcommand{{\\resumeItemListStart}}{{\\begin{{itemize}}}}
+\\newcommand{{\\resumeItemListStart}}{{\\begin{{itemize}}[leftmargin=0.2in, labelsep=1em, itemsep=1pt]}}
 \\newcommand{{\\resumeItemListEnd}}{{\\end{{itemize}}\\vspace{{-5pt}}}}
 
 %-------------------------------------------
@@ -88,7 +91,8 @@ class LatexFormatter:
 
 %----------HEADING----------%
 \\begin{{center}}
-    \\textbf{{\\Huge \\scshape Amirreza Sokhankhosh}} \\\\ \\vspace{{1pt}}
+    \\textbf{{\\Huge \\scshape Amirreza Sokhankhosh}} \\\\ \\vspace{{2pt}}
+    \\faMapMarker \\ \\small Toronto, Ontario, Canada \\\\ \\vspace{{2pt}}
     \\faPhone \\small 431-293-6515 \\quad
     \\href{{mailto:amirreza.skhn@gmail.com}}{{\\faEnvelope \\ \\underline{{amirreza.skhn@gmail.com}}}} \\quad
     \\href{{https://www.linkedin.com/in/amirrezakh/}}{{\\faLinkedin \\ \\underline{{LinkedIn}}}} \\quad
@@ -96,11 +100,17 @@ class LatexFormatter:
     \\href{{https://amirrezaskh.com}}{{\\faBriefcase \\ \\underline{{Portfolio}}}}
 \\end{{center}}
 
-%----------Highlight of Qualifications----------%
-\\section{{Highlight of Qualifications}}
+%----------Summary----------%
+\\section{{Summary}}
 \\resumeItemListStart
-{highlights}
+{summary}
 \\resumeItemListEnd
+%-----------Technical Skills-----------
+\\section{{Skills}}
+
+{skills}
+
+%-------------------------------------------
 %-----------EXPERIENCE-----------%
 \\section{{Experience}}
 \\resumeSubHeadingListStart
@@ -134,12 +144,6 @@ class LatexFormatter:
 
     \\resumeSubHeadingListEnd
 
-%-----------Technical Skills-----------
-\\section{{Technical Skills}}
-
-{skills}
-
-%-------------------------------------------
 \\end{{document}}
 """
     

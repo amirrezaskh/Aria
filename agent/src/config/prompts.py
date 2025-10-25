@@ -197,51 +197,22 @@ class PromptTemplates:
     Generate the LaTeX project entry:
     """)
 
-    HIGHLIGHTS_PROMPT = PromptTemplate.from_template("""
-    You are an expert resume writer specializing in creating compelling "Highlight of Qualifications" sections that synthesize a candidate's experiences, skills, and projects into powerful qualification statements.
-    
-    Your task is to analyze the job posting and all provided resume content, then generate a LaTeX-formatted highlights section that positions the candidate as the ideal fit for the role.
+    SUMMARY_PROMPT = PromptTemplate.from_template("""
+    You are an expert resume writer. Using the provided job posting and candidate data, generate a single plain-text professional summary suitable for the top of a resume.
 
-    JOB POSTING:
-    {job}
+    INPUTS:
+    JOB POSTING: {job}
+    EXPERIENCES: {experiences}
+    SKILLS: {skills}
+    PROJECTS: {projects}
 
-    CANDIDATE'S EXPERIENCES:
-    {experiences}
+    REQUIREMENTS:
+    - Output exactly one plain-text summary (no LaTeX or markup).
+    - The summary must be between 220 and 330 characters long (inclusive).
+    - Use concise, recruiter-friendly language; mention years of experience if available, core technologies, and primary strengths.
+    - Do not include any headings, explanations, or extra text—only the summary sentence/paragraph.
 
-    CANDIDATE'S TECHNICAL SKILLS:
-    {skills}
-
-    CANDIDATE'S PROJECTS:
-    {projects}
-
-    INSTRUCTIONS:
-    1. Analyze the job posting to identify the most critical qualifications and requirements
-    2. Review all the candidate's content (experiences, skills, projects) to extract relevant strengths
-    3. Synthesize this information into 5-7 compelling qualification highlights
-    4. Generate a LaTeX highlights section following this EXACT format:
-
-    \\resumeItem{{\\textbf{{Domain Area 1:}} Comprehensive statement showcasing relevant expertise with \\textbf{{key technologies}} and demonstrable outcomes.}}
-    \\resumeItem{{\\textbf{{Domain Area 2:}} Comprehensive statement showcasing relevant expertise with \\textbf{{key technologies}} and demonstrable outcomes.}}
-    \\resumeItem{{\\textbf{{Domain Area 3:}} Comprehensive statement showcasing relevant expertise with \\textbf{{key technologies}} and demonstrable outcomes.}}
-    \\resumeItem{{\\textbf{{Domain Area 4:}} Comprehensive statement showcasing relevant expertise with \\textbf{{key technologies}} and demonstrable outcomes.}}
-    \\resumeItem{{\\textbf{{Domain Area 5:}} Comprehensive statement showcasing relevant expertise with \\textbf{{key technologies}} and demonstrable outcomes.}}
-
-    EXAMPLE OUTPUT:
-    \\resumeItem{{\\textbf{{Machine Learning \\& AI:}} 5+ years developing \\textbf{{deep learning}} models using \\textbf{{PyTorch}} \\& \\textbf{{TensorFlow}} with 95\\% accuracy improvements.}}
-
-    Note: Always use \\& instead of & for ampersands in LaTeX text.
-
-    FORMATTING GUIDELINES:
-    - Each highlight should start with a \\textbf{{domain area}} that matches job requirements
-    - Bold all technical skills, technologies, frameworks, and methodologies using \\textbf{{}}
-    - Include specific technologies and techniques mentioned in experiences and projects
-    - Quantify achievements where possible (percentages, scale, impact - use \\% for percentages in LaTeX)
-    - Use strong, confident language that demonstrates expertise
-    - Each highlight should be 1-2 lines maximum for readability
-    - Order highlights by importance to the job posting
-    - IMPORTANT: Use proper LaTeX escaping - write \\& instead of & for ampersands in text
-
-    Generate the LaTeX highlight of qualifications:
+    Generate the summary now and ensure it meets the character length constraint:
     """)
 
     COVER_LETTER_PROMPT = PromptTemplate.from_template("""
@@ -255,7 +226,7 @@ class PromptTemplates:
     {job_posting}
 
     PERSONALIZED RESUME CONTENT:
-    Highlights: {resume_highlights}
+    Summary: {resume_summary}
     Experiences: {resume_experiences}
     Skills: {resume_skills}
     Projects: {resume_projects}

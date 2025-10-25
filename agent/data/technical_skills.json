@@ -17,7 +17,7 @@
   ],
   "Languages": [
     { "skill": "Python", "expertise": 10 },
-    { "skill": "C++", "expertise": 5 },
+    { "skill": "C++", "expertise": 6 },
     { "skill": "Java", "expertise": 7 },
     { "skill": "JavaScript", "expertise": 9 },
     { "skill": "TypeScript", "expertise": 9 },

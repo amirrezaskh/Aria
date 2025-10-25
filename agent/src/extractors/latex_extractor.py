@@ -78,55 +78,65 @@ class LaTeXExtractor:
         return text.strip()
     
     @staticmethod
-    def extract_highlights(text: str) -> str:
-        """Extract LaTeX highlights/qualifications from LLM response"""
+    def extract_summary(text: str) -> str:
+        """Extract plain-text professional summary from LLM response"""
         text = LaTeXExtractor.clean_markdown_blocks(text)
         
-        def extract_resume_items(text: str) -> List[str]:
-            items = []
-            lines = text.split('\n')
-            current_item = ''
-            brace_count = 0
-            in_resume_item = False
+        # Remove common LLM response prefixes and explanatory text
+        lines = text.split('\n')
+        cleaned_lines = []
+        
+        skip_prefixes = [
+            "Here's a",
+            "Here is a", 
+            "Based on",
+            "I'll create",
+            "The summary",
+            "This summary",
+            "Following the",
+            "Generated summary:",
+            "Summary:",
+            "Professional Summary:",
+            "**",  # Bold markdown
+            "```",  # Code blocks
+            "Note:",
+            "Important:",
+            "Character count:",
+            "Length:"
+        ]
+        
+        for line in lines:
+            line = line.strip()
             
-            for line in lines:
-                line = line.strip()
-                if line.startswith('\\resumeItem{'):
-                    if current_item and in_resume_item:
-                        items.append(current_item.strip())
-                    current_item = line
-                    brace_count = line.count('{') - line.count('}')
-                    in_resume_item = True
-                elif in_resume_item:
-                    current_item += ' ' + line
-                    brace_count += line.count('{') - line.count('}')
-                    
-                if in_resume_item and brace_count <= 0:
-                    items.append(current_item.strip())
-                    current_item = ''
-                    in_resume_item = False
-                    brace_count = 0
+            # Skip empty lines at the beginning
+            if not line and not cleaned_lines:
+                continue
+                
+            # Skip instructional or explanatory lines
+            should_skip = False
+            for prefix in skip_prefixes:
+                if line.startswith(prefix):
+                    should_skip = True
+                    break
             
-            # Add any remaining item
-            if current_item and in_resume_item:
-                items.append(current_item.strip())
-            
-            return items
+            if not should_skip and line:
+                cleaned_lines.append(line)
         
-        resume_items = extract_resume_items(text)
+        # Join lines into a single summary paragraph
+        summary = ' '.join(cleaned_lines).strip()
         
-        if resume_items:
-            return '\n'.join(resume_items)
+        # Clean up excessive whitespace
+        summary = re.sub(r'\s+', ' ', summary)
         
-        # Fallback: try simple regex for single-line items
-        simple_pattern = r'\\resumeItem\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}'
-        simple_matches = re.findall(simple_pattern, text)
+        # Remove any remaining markdown formatting
+        summary = re.sub(r'\*\*(.*?)\*\*', r'\1', summary)  # Remove **bold**
+        summary = re.sub(r'\*(.*?)\*', r'\1', summary)  # Remove *italic*
         
-        if simple_matches:
-            return '\n'.join(simple_matches)
+        # Validate summary length (should be 220-330 characters)
+        if len(summary) < 50:  # Too short, likely an error
+            return text.strip()  # Return original if cleaning went wrong
         
-        # Ultimate fallback: return cleaned text
-        return text.strip()
+        return summary
     
     @staticmethod
     def extract_cover_letter(text: str) -> str:
