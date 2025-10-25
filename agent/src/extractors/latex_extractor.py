@@ -37,23 +37,65 @@ class LaTeXExtractor:
     
     @staticmethod
     def extract_skills(text: str) -> str:
-        """Extract LaTeX skills section from LLM response"""
+        """Extract comma-separated skills list from LLM response"""
         text = LaTeXExtractor.clean_markdown_blocks(text)
         
-        # Pattern to match \\begin{itemize} ... \\end{itemize} block
-        pattern = r'(\\begin\{itemize\}\[leftmargin=[^\]]*\].*?\\end\{itemize\})'
-        match = re.search(pattern, text, re.DOTALL)
+        # Remove common LLM response prefixes and explanatory text
+        lines = text.split('\n')
+        cleaned_lines = []
         
-        if match:
-            return match.group(1)
+        skip_prefixes = [
+            "Here's a",
+            "Here is a", 
+            "Based on",
+            "I'll create",
+            "The skills",
+            "This skills",
+            "Following the",
+            "Generated skills:",
+            "Skills:",
+            "Technical Skills:",
+            "**",  # Bold markdown
+            "```",  # Code blocks
+            "Note:",
+            "Important:",
+            "Skills list:"
+        ]
         
-        # Fallback: look for \\small{\\item{ ... }} pattern
-        fallback_pattern = r'(\\small\{\\item\{.*?\}\})'
-        fallback_match = re.search(fallback_pattern, text, re.DOTALL)
+        for line in lines:
+            line = line.strip()
+            
+            # Skip empty lines at the beginning
+            if not line and not cleaned_lines:
+                continue
+                
+            # Skip instructional or explanatory lines
+            should_skip = False
+            for prefix in skip_prefixes:
+                if line.startswith(prefix):
+                    should_skip = True
+                    break
+            
+            if not should_skip and line:
+                cleaned_lines.append(line)
         
-        if fallback_match:
-            return f"\\begin{{itemize}}[leftmargin=0.15in, label={{}}]\n{fallback_match.group(1)}\n\\end{{itemize}}"
+        # Join lines and look for comma-separated skills
+        skills_text = ' '.join(cleaned_lines).strip()
         
+        # Clean up excessive whitespace
+        skills_text = re.sub(r'\s+', ' ', skills_text)
+        
+        # Remove any remaining markdown formatting
+        skills_text = re.sub(r'\*\*(.*?)\*\*', r'\1', skills_text)  # Remove **bold**
+        skills_text = re.sub(r'\*(.*?)\*', r'\1', skills_text)  # Remove *italic*
+        
+        # Validate that it looks like a comma-separated list
+        if ',' in skills_text and len(skills_text) > 20:
+            # Clean up spacing around commas
+            skills_text = re.sub(r'\s*,\s*', ', ', skills_text)
+            return skills_text
+        
+        # Fallback: return original cleaned text if format doesn't match expected
         return text.strip()
     
     @staticmethod

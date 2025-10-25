@@ -102,13 +102,11 @@ class LatexFormatter:
 
 %----------Summary----------%
 \\section{{Summary}}
-\\resumeItemListStart
 {summary}
-\\resumeItemListEnd
 %-----------Technical Skills-----------
 \\section{{Skills}}
 
-{skills}
+\\small {skills}
 
 %-------------------------------------------
 %-----------EXPERIENCE-----------%

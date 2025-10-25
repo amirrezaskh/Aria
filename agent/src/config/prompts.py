@@ -55,9 +55,9 @@ class PromptTemplates:
     """)
 
     SKILLS_PROMPT = PromptTemplate.from_template("""
-    You are an expert resume writer specializing in tailoring technical skills sections to specific job requirements.
+    You are an expert resume writer specializing in tailoring technical skills to specific job requirements.
 
-    Your task is to analyze the job posting and remove only those skills from the candidate's skill set that are clearly irrelevant, keeping a broad and well-rounded technical skills section. Start with the full list, then prune.
+    Your task is to analyze the job posting and select the most relevant skills from the candidate's skill set that align with the job requirements.
 
     JOB POSTING:
     {job}
@@ -67,37 +67,26 @@ class PromptTemplates:
 
     INSTRUCTIONS:
     1. Analyze the job posting to identify required/preferred technical skills, technologies, frameworks, and tools.
-    2. Start with the full candidate skill set, and remove only those skills that are clearly irrelevant to the job.
-    3. Within each category, prioritize:
-    - Direct matches from the job posting
-    - High expertise (score ≥ 6)
-    - Industry-relevant and complementary skills
-    4. Ensure **at least 4–5 skills per category** (unless fewer exist in the candidate's set).
-    5. Cap each category at **8–10 skills maximum** to keep it concise.
+    2. From the candidate's skill set, select 12-18 skills that are most relevant to the job posting.
+    3. Prioritize skills in this order:
+       - Direct matches from the job posting (highest priority)
+       - Complementary and industry-relevant skills
+       - Core technologies that demonstrate expertise level
+    4. Include a mix of: programming languages, frameworks, databases, cloud/DevOps tools, and methodologies.
+    5. Do not include expertise scores in the output.
+    6. Do not include skills that are not included within the candidate's technical skills.
 
     OUTPUT FORMAT:
-    Generate a LaTeX technical skills section in this exact format:
+    Generate a simple comma-separated list of skills, like this example:
+    Django, NestJS, Express.JS, REST API, PostgreSQL, MySQL, MongoDB, Redis, Docker, AWS, LangChain, LangGraph, HuggingFace Transformers
 
-    \\begin{{itemize}}[leftmargin=0.15in, label={{}}]
-    \\small{{\\item{{
-        \\textbf{{AI / Machine Learning}}{{: [Selected AI/ML skills]}} \\\\
-        \\textbf{{Languages}}{{: [Selected programming languages]}} \\\\
-        \\textbf{{Cloud \\& DevOps}}{{: [Selected cloud/devops tools]}} \\\\
-        \\textbf{{Databases}}{{: [Selected database technologies]}} \\\\
-        \\textbf{{Web Frameworks}}{{: \\emph{{Back-end}}: [Backend frameworks]. \\emph{{Front-end}}: [Frontend frameworks]}} \\\\
-        \\textbf{{Tools \\& Methodologies}}{{: [Selected tools and methodologies]}}
-    }}}}
-    \\end{{itemize}}
+    REQUIREMENTS:
+    - Output ONLY the comma-separated skills list, nothing else.
+    - No explanations, headings, or additional text.
+    - Use proper capitalization and spacing.
+    - Separate each skill with a comma and space.
 
-    FORMATTING RULES:
-    - Only omit a category if the candidate truly has no relevant skills there.
-    - Within categories, sort skills by relevance to the job posting.
-    - Use LaTeX escaping (\\& for ampersands, etc.).
-    - Do not include expertise scores in the output.
-    - Keep categories ordered according to relevance to the job description.
-    - Output **only the LaTeX block**, nothing else.
-
-    Now generate the LaTeX technical skills section:
+    Generate the skills list now:
     """)
 
     PROJECT_SELECTION_PROMPT = PromptTemplate.from_template("""
